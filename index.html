@@ -1,47 +1,48 @@
 <!doctype html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Место</title>
-    <link rel="stylesheet" href="./pages/index.css">
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Место</title>
+  <link rel="stylesheet" href="./pages/index.css">
 </head>
 <body class="root">
 <header class="header">
-    <div class="header__logo">
-        <img src="./images/logo.svg" alt="Mesto logo">
-    </div>
+
+  <img src="./images/logo.svg" alt="Mesto logo" class="header__logo">
+  <div class="line"></div>
 </header>
 
 <main>
-    <section class="profile">
-        <img src="./images/Jacques-Yves-Cousteau.jpg" class="profile__avatar" alt="Жак-Ив Кусто">
-        <div class="profile__info">
-            <h1 class="profile__title">Жак-Ив Кусто</h1>
-            <button class="profile__edit"></button>
-            <p class="profile__subtitle">Исследователь океана</p>
-        </div>
-        <button class="profile__btn-add"></button>
+  <section class="profile">
+    <img src="./images/Jacques-Yves-Cousteau.jpg" class="profile__avatar" alt="Жак-Ив Кусто">
+    <div class="profile__info">
+      <h1 class="profile__title">Жак-Ив Кусто</h1>
+      <button class="profile__edit"></button>
+      <p class="profile__subtitle">Исследователь океана</p>
+    </div>
+    <button class="profile__btn-add"></button>
 
 
-    </section>
-    <section class="elements">
-      <div class="element">
-        <img src="" alt="Владивосток" class="element__image">
-        <div class="element__info">
-          <div class="element__name"></div>
-          <button class="element__btn-like"></button>
-        </div>
+  </section>
+  <section class="elements">
+    <div class="element">
+      <img src="./images/vladivistok.jpg" alt="Владивосток" class="element__image">
+      <div class="element__info">
+        <h2 class="element__name">Владивосток</h2>
+        <button class="element__btn-like"></button>
       </div>
-    </section>
+    </div>
+  </section>
 
 
 </main>
 
 <footer class="footer">
-    <p class="footer__copyright">&copy;2022 <a href="https://github.com/GRcode46" target="_blank" class="footer__copyright-link">GRcode46</a>
+  <p class="footer__copyright">&copy;2022 <a href="https://github.com/GRcode46" target="_blank"
+                                             class="footer__copyright-link">GRcode46</a>
 </footer>
 
 <div class="popup popup_opened">

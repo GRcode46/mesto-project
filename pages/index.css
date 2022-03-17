@@ -2,3 +2,27 @@
 @import url(../vendor/normalize.css);
 @import url(../fonts/fonts.css);
 @import url(../blocks/root/root.css);
+
+
+/*header styles*/
+@import url(../blocks/header/header.css);
+@import url(../blocks/header/__logo/header__logo.css);
+
+
+/*profile styles*/
+@import url(../blocks/profile/profile.css);
+@import url(../blocks/profile/__avatar/profile__avatar.css);
+@import url(../blocks/profile/__info/profile__info.css);
+
+@import url(../blocks/elements/elements.css);
+@import url(../blocks/element/element.css);
+@import url(../blocks/element/__image/element__image.css);
+@import url(../blocks/element/__info/element__info.css);
+@import url(../blocks/element/__name/element__name.css);
+@import url(../blocks/element/__btn-like/element__btn-like.css);
+
+/*debug style*/
+* {
+    /*border: 1px dotted red;*/
+    box-sizing: border-box;
+}
