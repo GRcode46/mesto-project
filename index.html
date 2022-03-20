@@ -12,7 +12,7 @@
 <header class="header">
 
   <img src="./images/logo.svg" alt="Mesto logo" class="header__logo">
-  <div class="line"></div>
+<!--  <div class="line"></div>-->
 </header>
 
 <main>
@@ -20,21 +20,25 @@
     <img src="./images/Jacques-Yves-Cousteau.jpg" class="profile__avatar" alt="Жак-Ив Кусто">
     <div class="profile__info">
       <h1 class="profile__title">Жак-Ив Кусто</h1>
-      <button class="profile__edit"></button>
+      <button class="profile__btn-edit" aria-label="Изменить профиль"></button>
       <p class="profile__subtitle">Исследователь океана</p>
     </div>
-    <button class="profile__btn-add"></button>
+    <button class="profile__btn-add" aria-label="Добавить элемент"></button>
 
 
   </section>
   <section class="elements">
-    <div class="element">
-      <img src="./images/vladivistok.jpg" alt="Владивосток" class="element__image">
-      <div class="element__info">
-        <h2 class="element__name">Владивосток</h2>
-        <button class="element__btn-like"></button>
-      </div>
-    </div>
+    <ul class="elements__list">
+      <li class="element">
+        <img src="./images/vladivistok.jpg" alt="Владивосток" class="element__image">
+        <div class="element__info">
+          <h2 class="element__name">Владивосток</h2>
+          <button class="element__btn-like"></button>
+        </div>
+      </li>
+
+    </ul>
+
   </section>
 
 

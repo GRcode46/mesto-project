@@ -1,4 +1,7 @@
 .element__info {
   margin: 0;
-  padding: 0;
+  /*padding: 0;*/
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 25px 15px 31px 21px;
 }

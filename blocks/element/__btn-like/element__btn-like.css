@@ -1,3 +1,7 @@
 .element__btn-like {
-  display: none;
+  /*display: none;*/
+  background-image: url("../../../images/btn-like-disabled.svg");
+  background-color: transparent;
+  border: 0;
+  background-repeat: no-repeat;
 }

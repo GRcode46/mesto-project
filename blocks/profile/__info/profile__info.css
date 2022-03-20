@@ -1,3 +1,13 @@
 .profile__info {
   text-align: center;
+  display: grid;
+  grid-template-columns: 20px 1fr 20px;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-areas:
+  ". title btn-edit"
+  ". subtitle .";
+  gap: 10px 14px;
+  align-items: center;
+  margin: 26px 0 36px;
+
 }
