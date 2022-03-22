@@ -8,7 +8,7 @@
   ". subtitle .";
   gap: 10px 14px;
   align-items: center;
-  margin: 26px 0 36px;
+  padding: 26px 0 36px;
 
 }
 
@@ -20,6 +20,6 @@
   "title btn-edit"
   "subtitle .";
     gap: 16px 18px;
-    /*align-items: ;*/
+    padding: 0 0 0 30px;
   }
 }

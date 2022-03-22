@@ -9,11 +9,11 @@
   color: #545454;
 }
 
-/* код для разрешения до 918 */
-@media screen and (min-width: 918px) {
+@media screen and (min-width: 736px) {
+  /* стили для планшета */
   .footer {
-    max-width: 880px;
-
+    font-size: 18px;
+    line-height: 22px;
   }
-
 }
+

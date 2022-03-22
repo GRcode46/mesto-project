@@ -1,25 +1,17 @@
 .profile {
-  margin: 42px auto 0;
+  margin: 42px auto 36px;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: center;
   padding: 0 19px 0;
-  /*justify-content: start;*/
 }
 
 @media screen and (min-width: 736px) {
   /* стили для планшета */
   .profile {
     flex-direction: row;
-    margin: 40px auto 0;
+    margin: 40px auto 50px;
   }
 }
 
-/* код для разрешения до 918 */
-@media screen and (min-width: 918px) {
-  .profile {
-    max-width: 880px;
-  }
-
-}

@@ -4,10 +4,3 @@
 }
 
 
-/* код для разрешения до 918 */
-@media screen and (min-width: 918px) {
-  .elements {
-    max-width: 880px;
-  }
-
-}

@@ -10,6 +10,7 @@
   cursor: pointer;
   border-radius: 2px;
   justify-self: end;
+
 }
 
 .profile__btn-add:hover {
@@ -24,6 +25,6 @@
     width: 150px;
     height: 50px;
     background-size: 22px;
-    /*justify-self: end;*/
+    margin-left: auto;
   }
 }

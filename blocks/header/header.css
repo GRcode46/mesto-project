@@ -5,11 +5,3 @@
 
 }
 
-/* код для разрешения до 918 */
-@media screen and (min-width: 918px) {
-  .header {
-    max-width: 880px;
-  }
-
-}
-
