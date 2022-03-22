@@ -1,3 +1,13 @@
 .popup__container {
+  min-width: 282px;
+  /*height: 322px;*/
+}
+
+/* код для разрешения до 619 */
+@media screen and (min-width: 619px) {
+  .popup__container {
+    min-width: 430px;
+    /*height: 330px;*/
+  }
 
 }

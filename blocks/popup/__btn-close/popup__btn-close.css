@@ -1,0 +1,24 @@
+.popup__btn-close {
+  width: 20px;
+  height: 20px;
+  border-style: none;
+  background: url("../../../images/popup-btn-close-small.svg") transparent no-repeat;
+  position: absolute;
+  top: -36px;
+  right: 0;
+  cursor: pointer;
+  padding: 0;
+}
+
+
+/* код для разрешения до 619 */
+@media screen and (min-width: 619px) {
+  .popup__btn-close {
+    background: url("../../../images/popup-btn-close-big.svg") transparent no-repeat;
+    width: 32px;
+    height: 32px;
+    top: -40px;
+    right: -40px;
+  }
+
+}

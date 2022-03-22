@@ -1,0 +1,25 @@
+.popup__account-text {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  margin: 0 auto 30px;
+  border: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  padding: 0 0 13px 0;
+  min-width: 238px;
+
+}
+
+.popup__account-text:last-of-type {
+  margin: 0 auto;
+}
+
+
+/* код для разрешения до 619 */
+@media screen and (min-width: 619px) {
+  .popup__account-text {
+    min-width: 358px;
+  }
+
+}

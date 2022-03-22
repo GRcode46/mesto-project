@@ -9,3 +9,8 @@
   padding: 0;
   cursor: pointer;
 }
+
+.element__btn-like:hover {
+  background-image: url("../../../images/btn-like-hover.svg");
+
+}
