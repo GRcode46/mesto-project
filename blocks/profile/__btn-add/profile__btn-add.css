@@ -2,14 +2,28 @@
   width: 282px;
   height: 50px;
   background-color: transparent;
-  border: 1px solid #fff;
+  border: 2px solid #fff;
   background-image: url("../../../images/btn-add.svg");
+  background-size: 16px;
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
+  border-radius: 2px;
+  justify-self: end;
 }
 
 .profile__btn-add:hover {
   opacity: 0.8;
 
+}
+
+
+@media screen and (min-width: 736px) {
+  /* стили для планшета */
+  .profile__btn-add {
+    width: 150px;
+    height: 50px;
+    background-size: 22px;
+    /*justify-self: end;*/
+  }
 }

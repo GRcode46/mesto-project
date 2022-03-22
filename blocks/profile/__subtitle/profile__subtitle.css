@@ -7,3 +7,12 @@
   margin: 0;
 
 }
+
+@media screen and (min-width: 736px) {
+  /* стили для планшета */
+  .profile__subtitle {
+    font-size: 18px;
+    line-height: 22px;
+    justify-self: start;
+  }
+}

@@ -26,8 +26,16 @@
 @import url(../blocks/element/__info/element__info.css);
 @import url(../blocks/element/__name/element__name.css);
 @import url(../blocks/element/__btn-like/element__btn-like.css);
+@import url(../blocks/element/__btn-like/_active/element__btn-lke_active.css);
+
+
+
+/*footer styles*/
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__copyright-link/footer__copyright-link.css);
 
 /*debug style*/
+
 * {
     /*border: 1px dotted red;*/
     box-sizing: border-box;

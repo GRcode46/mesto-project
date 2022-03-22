@@ -1,7 +1,16 @@
 .element {
   border-radius: 10px;
   background-color: #fff;
-  /*min-height: 362px;*/
   font-size: 0;
   list-style: none;
+  /*margin-bottom: 20px;*/
+}
+
+/* код для разрешения до 918 */
+@media screen and (min-width: 918px) {
+  .element {
+    max-width: 282px;
+
+  }
+
 }

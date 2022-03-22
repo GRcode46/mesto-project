@@ -9,9 +9,19 @@
   cursor: pointer;
   grid-area: btn-edit;
   padding: 0;
+
 }
 
 .profile__btn-edit:hover {
   opacity: 0.8;
 
+}
+
+
+@media screen and (min-width: 736px) {
+  /* стили для планшета */
+  .profile__btn-edit {
+    width: 24px;
+    height: 24px;
+  }
 }

@@ -1,4 +1,25 @@
 .elements__list {
   padding: 0;
   display: grid;
+  gap: 20px;
+}
+
+
+
+/* код для разрешения до 619 */
+@media screen and (min-width: 619px) {
+  .elements__list {
+  grid-template-columns: repeat(2, 1fr);
+    /*gap: 17px 20px;*/
+  }
+
+}
+
+/* код для разрешения до 918 */
+@media screen and (min-width: 918px) {
+  .elements__list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 17px 20px;
+  }
+
 }

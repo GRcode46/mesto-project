@@ -5,11 +5,21 @@
   flex-wrap: nowrap;
   align-items: center;
   padding: 0 19px 0;
+  /*justify-content: start;*/
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 736px) {
   /* стили для планшета */
   .profile {
     flex-direction: row;
+    margin: 40px auto 0;
   }
+}
+
+/* код для разрешения до 918 */
+@media screen and (min-width: 918px) {
+  .profile {
+    max-width: 880px;
+  }
+
 }

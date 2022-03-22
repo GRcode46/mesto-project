@@ -1,0 +1,19 @@
+.footer {
+  padding: 48px 19px 36px;
+  margin: 0 auto;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+
+  color: #545454;
+}
+
+/* код для разрешения до 918 */
+@media screen and (min-width: 918px) {
+  .footer {
+    max-width: 880px;
+
+  }
+
+}

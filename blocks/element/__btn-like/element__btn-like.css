@@ -1,7 +1,11 @@
 .element__btn-like {
-  /*display: none;*/
-  background-image: url("../../../images/btn-like-disabled.svg");
+  background-image: url("../../../images/btn-like-off.svg");
   background-color: transparent;
   border: 0;
   background-repeat: no-repeat;
+  justify-self: end;
+  width: 22px;
+  height: 19px;
+  padding: 0;
+  cursor: pointer;
 }
