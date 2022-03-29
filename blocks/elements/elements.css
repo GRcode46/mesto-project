@@ -3,4 +3,11 @@
   margin: auto;
 }
 
+/* стили для планшета */
+@media screen and (min-width: 736px) {
+  .elements {
+    padding: 0;
+  }
+}
+
 

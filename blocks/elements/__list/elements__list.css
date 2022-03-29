@@ -1,26 +1,21 @@
 .elements__list {
   padding: 0;
   display: grid;
-  gap: 20px;
+  gap: 19px;
   margin: 0;
 }
 
-
-
-/* код для разрешения до 619 */
+/* код для разрешения от 619 */
 @media screen and (min-width: 619px) {
   .elements__list {
-  grid-template-columns: repeat(2, 1fr);
-    /*gap: 17px 20px;*/
+    grid-template-columns: repeat(2, 1fr);
   }
-
 }
 
-/* код для разрешения до 918 */
-@media screen and (min-width: 918px) {
+/* код для разрешения от 880 */
+@media screen and (min-width: 880px) {
   .elements__list {
     grid-template-columns: repeat(3, 1fr);
-    gap: 17px 20px;
+    gap: 20px 19px;
   }
-
 }

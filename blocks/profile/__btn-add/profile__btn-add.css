@@ -9,23 +9,20 @@
   background-position: center;
   cursor: pointer;
   border-radius: 2px;
-  justify-self: end;
+  margin: 32px 0 0 0;
   padding: 0;
-
 }
 
 .profile__btn-add:hover {
-  opacity: 0.8;
-
+  opacity: 0.6;
 }
-
 
 @media screen and (min-width: 736px) {
   /* стили для планшета */
   .profile__btn-add {
     width: 150px;
-    height: 50px;
     background-size: 22px;
     margin-left: auto;
+    margin-top: 0;
   }
 }

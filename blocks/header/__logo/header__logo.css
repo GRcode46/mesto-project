@@ -1,6 +1,10 @@
 .header__logo {
-  /*padding: 0 27px 31.6px;*/
-  padding-left: 27px;
-  max-height: 24.4px;
+  max-width: 104px;
 }
 
+/* код для разрешения от 736 */
+@media screen and (min-width: 736px) {
+  .header__logo {
+    max-width: 142px;
+  }
+}

@@ -1,9 +1,8 @@
 .footer__copyright-link {
   color: #545454;
+  text-decoration: none;
 }
-
 
 .footer__copyright-link:hover {
   color: #fff;
-  text-decoration: none;
 }

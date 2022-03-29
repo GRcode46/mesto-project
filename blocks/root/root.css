@@ -3,7 +3,9 @@
   background-color: #000;
   color: #fff;
   font-family: "Inter", Arial, "sans-serif";
-  margin: auto;
+  font-weight: 400;
+  margin: 0 auto;
+  padding: 0;
 
   /*Сглаживание*/
   -moz-osx-font-smoothing: grayscale;

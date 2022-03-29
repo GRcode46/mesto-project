@@ -3,7 +3,6 @@
   background-color: #fff;
   font-size: 0;
   list-style: none;
-  /*margin-bottom: 20px;*/
 }
 
 /* код для разрешения до 918 */
@@ -12,5 +11,4 @@
     max-width: 282px;
 
   }
-
 }
