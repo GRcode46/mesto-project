@@ -9,7 +9,7 @@
 }
 
 /* стили для планшета */
-@media screen and (min-width: 736px) {
+@media screen and (min-width: 1024px) {
   .footer {
     font-size: 18px;
     line-height: 22px;

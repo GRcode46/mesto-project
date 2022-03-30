@@ -4,6 +4,7 @@
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: center;
+  padding: 0 19px 0;
 }
 
 @media screen and (min-width: 736px) {
@@ -11,7 +12,12 @@
   .profile {
     flex-direction: row;
     margin: 40px auto 51px;
-    padding: 0;
   }
 }
 
+@media screen and (min-width: 1024px) {
+  /* стили для планшета */
+  .profile {
+    padding: 0;
+  }
+}

@@ -4,7 +4,7 @@
 }
 
 /* стили для планшета */
-@media screen and (min-width: 736px) {
+@media screen and (min-width: 1024px) {
   .elements {
     padding: 0;
   }

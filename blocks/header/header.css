@@ -3,7 +3,7 @@
   padding: 28px 0 28px 27px;
 }
 /* код для разрешения от 736 */
-@media screen and (min-width: 736px) {
+@media screen and (min-width: 1024px) {
   .header {
     padding: 45px 0 37px 0;
   }
