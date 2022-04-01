@@ -6,7 +6,7 @@
   margin: 0 auto 30px;
   border: 0;
   border-bottom: 1px solid rgba(0, 0, 0, .2);
-  padding: 0 0 9px 0;
+  padding: 9px 0 9px 0;
   min-width: 238px;
 }
 
@@ -18,7 +18,7 @@
 @media screen and (min-width: 619px) {
   .popup__account-text {
     min-width: 358px;
-    padding: 0 0 10px 0;
+    padding: 10px 0 10px 0;
     margin: 0 auto 28px;
     line-height: 10px;
   }
