@@ -29,10 +29,12 @@ console.log(ProfileEditButton);
 
 
 
-let toggleEditProfileForm = () => popup.classList.toggle('popup_opened');
+//let toggleEditProfileForm = () => popup.classList.toggle('popup_opened');
+let openEditProfileForm = () => popup.classList.add('popup_opened');
+let closeEditProfileForm = () => popup.classList.remove('popup_opened');
 
-popupProfileCloseButton.addEventListener('click', toggleEditProfileForm);
-ProfileEditButton.addEventListener('click', toggleEditProfileForm);
+popupProfileCloseButton.addEventListener('click', closeEditProfileForm);
+ProfileEditButton.addEventListener('click', openEditProfileForm);
 
 
 popupProfileForm.addEventListener('submit',  function () {
