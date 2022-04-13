@@ -1,42 +1,44 @@
 const popup = document.querySelector('.popup');
-console.log(popup);
-
 const popupProfileForm = document.querySelector('.popup__form');
-console.log(popupProfileForm);
-
-//TODO Add Element from
-// const popupAddElement = document.querySelector('.popup__form');
-// console.log(popupAddElement);
-
+const popupProfileInputTitle = popupProfileForm.querySelector('#popup-profile-title');
+const popupProfileInputSubtitle = popupProfileForm.querySelector('#popup-profile-subtitle');
+const popupProfileCloseButton = popupProfileForm.querySelector('.popup__btn-close');
+const popupProfileSaveButton = popupProfileForm.querySelector('.popup__btn-account-submit');
 
 const profile = document.querySelector('.profile');
-console.log(profile);
-
-const popupProfileInputTitle = popupProfileForm.querySelector('#popup-profile-title');
-console.log(popupProfileInputTitle);
-
-const popupProfileInputSubtitle = popupProfileForm.querySelector('#popup-profile-subtitle');
-console.log(popupProfileInputSubtitle);
-
-const popupProfileCloseButton = popupProfileForm.querySelector('.popup__btn-close');
-console.log(popupProfileCloseButton);
-
-const popupProfileSaveButton = popupProfileForm.querySelector('.popup__btn-account-submit');
-console.log(popupProfileSaveButton);
-
-const ProfileEditButton = profile.querySelector('.profile__btn-edit');
-console.log(ProfileEditButton);
+const profileEditButton = profile.querySelector('.profile__btn-edit');
+const profileTitleValue = profile.querySelector('.profile__title');
+const profileSubtitleValue = profile.querySelector('.profile__subtitle');
 
 
+// Functions
 
-//let toggleEditProfileForm = () => popup.classList.toggle('popup_opened');
+// Close edit profile popup
 let openEditProfileForm = () => popup.classList.add('popup_opened');
+
+// Close edit profile popup
 let closeEditProfileForm = () => popup.classList.remove('popup_opened');
 
+// Open edit profile popup
+let readEditProfileForm = function (){
+  popupProfileInputTitle.value = profileTitleValue.textContent;
+  popupProfileInputSubtitle.value = profileSubtitleValue.textContent;
+  openEditProfileForm();
+}
+
+
+// Save edit profile form
+let saveEditProfileForm = function (evt) {
+  evt.preventDefault();
+  profileTitleValue.textContent = popupProfileInputTitle.value;
+  profileSubtitleValue.textContent = popupProfileInputSubtitle.value;
+  closeEditProfileForm();
+}
+
+
+
+
+// add listeners
 popupProfileCloseButton.addEventListener('click', closeEditProfileForm);
-ProfileEditButton.addEventListener('click', openEditProfileForm);
-
-
-popupProfileForm.addEventListener('submit',  function () {
-  console.log('test')
-} );
+profileEditButton.addEventListener('click', readEditProfileForm);
+popupProfileForm.addEventListener('submit',  saveEditProfileForm);
