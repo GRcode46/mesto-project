@@ -29,6 +29,14 @@
   <section class="elements" aria-label="Элементы галереи">
     <ul class="elements__list">
 <!--place for insert cards-->
+<!--      <li class="element">-->
+<!--        <div class="element__image-container">-->
+<!--          <button type="button" class="element__trash"></button>-->
+<!--          <img src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="Архыз" class="element__image">-->
+<!--        </div>-->
+<!--        <h2 class="element__name">Тест</h2>-->
+<!--        <button type="button" class="element__btn-like"></button>-->
+<!--      </li>-->
     </ul>
   </section>
 </main>
@@ -66,11 +74,13 @@
 <!--card template-->
 <template id="element-template">
         <li class="element">
-          <div class="element__image-container">
+
+            <button type="button" class="element__trash"></button>
             <img src="" alt="" class="element__image">
-          </div>
+                    <div class="element__info">
           <h2 class="element__name"></h2>
           <button type="button" class="element__btn-like"></button>
+                    </div>
         </li>
 </template>
 <script src="./scripts/script.js"></script>

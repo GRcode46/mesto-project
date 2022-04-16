@@ -60,6 +60,13 @@ let openPopup = (popup) => popup.classList.add('popup_opened');
 // Close edit profile popup
 let closePopup = (popup) => popup.classList.remove('popup_opened');
 
+//simple close popup on outside click
+let closePopupOutsideClick = function (evt) {
+  if (evt.target === evt.currentTarget) {
+    closePopup(evt.target);
+  }
+}
+
 // Open edit profile popup
 let loadEditProfileForm = function (popup){
   profilePopupInputTitle.value = profileTitleValue.textContent;
@@ -92,12 +99,11 @@ function loadElements(elementName, elementLink) {
   //   openPopupImage(elementLink, elementName)
   // });
 
-  // element.querySelector('.element__trash').addEventListener('click', function (evt) {
-  //   evt.target.closest('._element').remove();
-  // });
+  element.querySelector('.element__trash').addEventListener('click', function (evt) {
+    evt.target.closest('.element').remove();
+  });
 
 }
-
 
 // function openPopupImage(imageLink, imageTitle) {
 //   openPopup(popupImg);
@@ -109,20 +115,11 @@ function loadElements(elementName, elementLink) {
 profilePopupCloseButton.addEventListener('click', ()=> {closePopup(profilePopup)});
 profileEditButton.addEventListener('click', ()=> {loadEditProfileForm(profilePopup)});
 profilePopupForm.addEventListener('submit', saveEditProfileForm);
-profilePopup.addEventListener('click', function (evt) {
-  if (evt.target === evt.currentTarget) {
-    closePopup(profilePopup);
-  }
-})
+profilePopup.addEventListener('click', closePopupOutsideClick);
 
-
-cardAddBtnOpen.addEventListener('click', ()=> {openPopup(cardPopup)});
 cardAddBtnClose.addEventListener('click', ()=> {closePopup(cardPopup)});
-cardPopup.addEventListener('click', function (evt) {
-  if (evt.target === evt.currentTarget) {
-    closePopup(cardPopup);
-  }
-})
+cardAddBtnOpen.addEventListener('click', ()=> {openPopup(cardPopup)});
+cardPopup.addEventListener('click', closePopupOutsideClick);
 
 
 initialCards.reverse().forEach(item => loadElements(item.name, item.link));
