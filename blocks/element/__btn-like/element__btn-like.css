@@ -3,11 +3,14 @@
   background-color: transparent;
   border: 0;
   background-repeat: no-repeat;
-  justify-self: end;
+  /*justify-self: end;*/
   width: 22px;
   height: 19px;
   padding: 0;
   cursor: pointer;
+  grid-area: like;
+  /*padding-right: 20px;*/
+  justify-self: start;
 }
 
 .element__btn-like:hover {

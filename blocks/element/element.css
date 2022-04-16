@@ -3,12 +3,22 @@
   background-color: #fff;
   font-size: 0;
   list-style: none;
+  /*position: relative;*/
+  display: grid;
+  grid-template-areas:
+    "image image"
+    "name like";
+  grid-template-columns: 1fr 42px;
+  grid-template-rows: 1fr 79px;
+  align-items: center;
+  justify-items: start;
+  overflow: hidden;
 }
 
 /* код для разрешения до 918 */
-@media screen and (min-width: 918px) {
-  .element {
-    max-width: 282px;
+/*@media screen and (min-width: 918px) {*/
+/*  .element {*/
+/*    max-width: 282px;*/
 
-  }
-}
+/*  }*/
+/*}*/
