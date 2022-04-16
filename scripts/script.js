@@ -33,7 +33,12 @@ const profilePopup = document.querySelector('#profile-popup');
 const profilePopupForm = document.querySelector('#profile-popup-form');
 const profilePopupInputTitle = profilePopupForm.querySelector('#popup-profile-title');
 const profilePopupInputSubtitle = profilePopupForm.querySelector('#popup-profile-subtitle');
-const profilePopupCloseButton = profilePopupForm.querySelector('.popup__btn-close');
+const profilePopupCloseButton = profilePopupForm.querySelector('#profile-btn-close');
+
+// add image popup
+const cardPopup = document.querySelector('#card-popup');
+const cardAddBtnOpen = document.querySelector('.profile__btn-add');
+const cardAddBtnClose = document.querySelector('#card-btn-close');
 
 // profile
 const profile = document.querySelector('.profile');
@@ -109,6 +114,16 @@ profilePopup.addEventListener('click', function (evt) {
     closePopup(profilePopup);
   }
 })
+
+
+cardAddBtnOpen.addEventListener('click', ()=> {openPopup(cardPopup)});
+cardAddBtnClose.addEventListener('click', ()=> {closePopup(cardPopup)});
+cardPopup.addEventListener('click', function (evt) {
+  if (evt.target === evt.currentTarget) {
+    closePopup(cardPopup);
+  }
+})
+
 
 initialCards.reverse().forEach(item => loadElements(item.name, item.link));
 
