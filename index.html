@@ -28,48 +28,7 @@
   </section>
   <section class="elements" aria-label="Элементы галереи">
     <ul class="elements__list">
-      <li class="element">
-        <img src="./images/vladivistok.jpg" alt="Владивосток" class="element__image">
-        <div class="element__info">
-          <h2 class="element__name">Владивосток</h2>
-          <button type="button" class="element__btn-like"></button>
-        </div>
-      </li>
-      <li class="element">
-        <img src="./images/yaroslavl.jpg" alt="Ярославль" class="element__image">
-        <div class="element__info">
-          <h2 class="element__name">Ярославль</h2>
-          <button type="button" class="element__btn-like"></button>
-        </div>
-      </li>
-      <li class="element">
-        <img src="./images/nn.jpg" alt="Нижний Новгород" class="element__image">
-        <div class="element__info">
-          <h2 class="element__name">Нижний Новгород</h2>
-          <button type="button" class="element__btn-like"></button>
-        </div>
-      </li>
-      <li class="element">
-        <img src="./images/tomsk.jpg" alt="Томск" class="element__image">
-        <div class="element__info">
-          <h2 class="element__name">Томск</h2>
-          <button type="button" class="element__btn-like"></button>
-        </div>
-      </li>
-      <li class="element">
-        <img src="./images/krasnodar.jpg" alt="Краснодар" class="element__image">
-        <div class="element__info">
-          <h2 class="element__name">Краснодар</h2>
-          <button type="button" class="element__btn-like element__btn-like_active"></button>
-        </div>
-      </li>
-      <li class="element">
-        <img src="./images/kaliningrad.jpg" alt="Калининград" class="element__image">
-        <div class="element__info">
-          <h2 class="element__name">Калининград</h2>
-          <button type="button" class="element__btn-like"></button>
-        </div>
-      </li>
+<!--place for insert cards-->
     </ul>
   </section>
 </main>
@@ -77,9 +36,9 @@
   <p class="footer__copyright">&copy;2022
     <a href="https://github.com/GRcode46" target="_blank" class="footer__copyright-link">GRcode46</a>
 </footer>
-<div class="popup">
+<div class="popup" id="profile-popup">
   <div class="popup__container">
-    <form action="#" class="popup__form" name="profileEdit">
+    <form action="#" class="popup__form" name="profileEdit" id="profile-popup-form">
       <button type="button" class="popup__btn-close" aria-label="Закрытие формы редактирования профиля"></button>
       <h3 class="popup__header">Редактировать профиль</h3>
       <input type="text" name="popup-profile-title" class="popup__account-text" placeholder="Введите имя"
@@ -90,6 +49,30 @@
     </form>
   </div>
 </div>
+
+<div class="popup" id="card-popup">
+  <div class="popup__container">
+    <form action="#" class="popup__form" name="cardAddForm" id="card-popup-form">
+      <button type="button" class="popup__btn-close" aria-label="Закрытие формы добавления карточки"></button>
+      <h3 class="popup__header">Новое место</h3>
+      <input type="text" name="card-title" class="popup__account-text" placeholder="Название"
+             id="card-title">
+      <input type="text" name="card-url" class="popup__account-text"  placeholder="Ссылка на картинку"
+             id="card-url">
+      <button type="submit" class="popup__btn-account-submit">Создать</button>
+    </form>
+  </div>
+</div>
+<!--card template-->
+<template id="element-template">
+        <li class="element">
+          <div class="element__image-container">
+            <img src="" alt="" class="element__image">
+          </div>
+          <h2 class="element__name"></h2>
+          <button type="button" class="element__btn-like"></button>
+        </li>
+</template>
 <script src="./scripts/script.js"></script>
 </body>
 </html>

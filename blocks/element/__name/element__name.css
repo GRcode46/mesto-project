@@ -9,4 +9,6 @@
   white-space: nowrap;
   overflow: hidden;
   max-width: calc(100% - 22px);
+  grid-area: name;
+  padding-left: 20px;
 }
