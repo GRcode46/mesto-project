@@ -43,6 +43,7 @@
 @import url(../blocks/popup/_opacity/_strong.css);
 @import url(../blocks/popup/_opacity/_light.css);
 
+
 /*popup-preview popup*/
 @import url(../blocks/popup-preview/popup-preview.css);
 @import url(../blocks/popup-preview/__image/popup-preview__image.css);

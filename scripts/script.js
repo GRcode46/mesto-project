@@ -59,8 +59,6 @@ const elementsList = document.querySelector('.elements__list');
 const elementTemplate = document.querySelector('#element-template').content;
 
 //2. Functions
-
-
 let openPopup = (popup) => popup.classList.add('popup_opened'); // open edit profile popup
 let closePopup = (popup) => popup.classList.remove('popup_opened'); // close edit profile popup
 let closePopupOutsideClick = function (evt) { // close any popup over outside click
@@ -115,21 +113,17 @@ function createElement(evt) { //add image from popup
   closePopup(elementPopup);
 }
 
-
 //3. Global actions
 profilePopupButtonClose.addEventListener('click', ()=> {closePopup(profilePopup)});
 profileButtonEdit.addEventListener('click', ()=> {loadEditProfileForm(profilePopup)});
 profilePopup.addEventListener('click', closePopupOutsideClick);
 profilePopupForm.addEventListener('submit', saveEditProfileForm);
-
 elementPopupButtonClose.addEventListener('click', ()=> {closePopup(elementPopup)});
 elementPopupButtonOpen.addEventListener('click', ()=> {openPopup(elementPopup)});
 elementPopup.addEventListener('click', closePopupOutsideClick);
 elementPopup.addEventListener('submit', createElement);
-
 previewPopup.addEventListener('click', closePopupOutsideClick);
 previewPopupButtonClose.addEventListener('click', ()=> {closePopup(previewPopup)})
-
 initialCards.reverse().forEach(element => loadElements(element.name, element.link));
 
 
