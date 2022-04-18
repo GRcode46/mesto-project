@@ -18,7 +18,7 @@
 <main>
   <section class="profile">
     <img src="./images/Jacques-Yves-Cousteau.jpg" class="profile__avatar" alt="Аватар пользователя">
-<!--    FIXME fix overflow for profile info items-->
+    <!--    FIXME fix overflow for profile info items-->
     <div class="profile__info">
       <h1 class="profile__title">Жак-Ив Кусто</h1>
       <button type="button" class="profile__btn-edit" aria-label="Изменить профиль"></button>
@@ -28,15 +28,7 @@
   </section>
   <section class="elements" aria-label="Элементы галереи">
     <ul class="elements__list">
-<!--place for insert cards-->
-<!--      <li class="element">-->
-<!--        <div class="element__image-container">-->
-<!--          <button type="button" class="element__trash"></button>-->
-<!--          <img src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="Архыз" class="element__image">-->
-<!--        </div>-->
-<!--        <h2 class="element__name">Тест</h2>-->
-<!--        <button type="button" class="element__btn-like"></button>-->
-<!--      </li>-->
+      <!--place for insert elements-->
     </ul>
   </section>
 </main>
@@ -44,45 +36,59 @@
   <p class="footer__copyright">&copy;2022
     <a href="https://github.com/GRcode46" target="_blank" class="footer__copyright-link">GRcode46</a>
 </footer>
-<div class="popup" id="profile-popup">
+<!--profile popup start-->
+<div class="popup popup_opacity_light" id="popup-profile">
   <div class="popup__container">
     <form action="#" class="popup__form" name="profileEdit" id="profile-popup-form">
-      <button type="button" id="profile-btn-close" class="popup__btn-close" aria-label="Закрытие формы редактирования профиля"></button>
+      <button type="button" id="profile-btn-close" class="buttons__popup-close"
+              aria-label="Закрытие формы редактирования профиля"></button>
       <h3 class="popup__header">Редактировать профиль</h3>
       <input type="text" name="popup-profile-title" class="popup__account-text" placeholder="Введите имя"
              id="popup-profile-title">
-      <input type="text" name="popup-profile-subtitle" class="popup__account-text"  placeholder="Введите описание"
+      <input type="text" name="popup-profile-subtitle" class="popup__account-text" placeholder="Введите описание"
              id="popup-profile-subtitle">
       <button type="submit" class="popup__btn-account-submit">Сохранить</button>
     </form>
   </div>
 </div>
-
-<div class="popup" id="card-popup">
+<!--profile popup end-->
+<!--element popup start-->
+<div class="popup popup_opacity_light" id="popup-element">
   <div class="popup__container">
     <form action="#" class="popup__form" name="cardAddForm" id="card-popup-form">
-      <button type="button" id="card-btn-close" class="popup__btn-close" aria-label="Закрытие формы добавления карточки"></button>
+      <button type="button" id="card-btn-close" class="buttons__popup-close"
+              aria-label="Закрытие формы добавления карточки"></button>
       <h3 class="popup__header">Новое место</h3>
       <input type="text" name="card-title" class="popup__account-text" placeholder="Название"
              id="card-title">
-      <input type="text" name="card-url" class="popup__account-text"  placeholder="Ссылка на картинку"
+      <input type="text" name="card-url" class="popup__account-text" placeholder="Ссылка на картинку"
              id="card-url">
       <button type="submit" class="popup__btn-account-submit">Создать</button>
     </form>
   </div>
 </div>
-<!--card template-->
+<!--element popup end-->
+<!--popup-preview popup start-->
+<div class="popup popup_opacity_strong" id="popup-preview">
+  <div class="popup-preview">
+    <button type="button" id="preview-btn-close" class="buttons__popup-close"></button>
+    <img src="" alt="" class="popup-preview__image">
+    <h3 class="popup-preview__title"></h3>
+  </div>
+</div>
+<!--element popup end-->
+<!--element template start-->
 <template id="element-template">
-        <li class="element">
-
-            <button type="button" class="element__trash"></button>
-            <img src="" alt="" class="element__image">
-                    <div class="element__info">
-          <h2 class="element__name"></h2>
-          <button type="button" class="element__btn-like"></button>
-                    </div>
-        </li>
+  <li class="element">
+    <button type="button" class="element__trash"></button>
+    <img src="" alt="" class="element__image">
+    <div class="element__info">
+      <h2 class="element__name"></h2>
+      <button type="button" class="element__btn-like"></button>
+    </div>
+  </li>
 </template>
+<!--element template end-->
 <script src="./scripts/script.js"></script>
 </body>
 </html>

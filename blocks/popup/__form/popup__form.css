@@ -1,7 +1,7 @@
 .popup__form {
   position: relative;
   display: grid;
-  grid-template-rows: repeat(4, min-content);
+  grid-template-rows: repeat(5, min-content);
   justify-items: left;
   margin: 0 auto;
   min-width: 282px;
