@@ -81,13 +81,13 @@ let saveEditProfileForm = function (evt) { // Save edit profile form
 }
 function loadElements(elementName, elementLink) { // create element node
   const element = elementTemplate.querySelector('.element').cloneNode(true);
-  // const likeBtn = element.querySelector('.element__btn-like');
+  const likeBtn = element.querySelector('.element__btn-like');
   const elementImage = element.querySelector('.element__image');
   element.querySelector('.element__name').textContent = elementName;
   element.querySelector('.element__image').src = elementLink;
   element.querySelector('.element__image').alt = elementName;
-  // likeBtn.addEventListener("click", () => likeBtn.classList.toggle('element__btn-like_active'));
-  elementsList.prepend(element);
+  likeBtn.addEventListener("click", () => likeBtn.classList.toggle('element__btn-like_active'));
+
 
   elementImage.addEventListener('click', () => { //add preview action for new elements from array
     openPopupImage(elementLink, elementName)
@@ -96,7 +96,7 @@ function loadElements(elementName, elementLink) { // create element node
   element.querySelector('.element__trash').addEventListener('click', function (evt) {
     evt.target.closest('.element').remove();
   });
-
+  elementsList.prepend(element);
 }
 
 function openPopupImage(imageLink, imageTitle) { //open preview image popup
