@@ -7,7 +7,8 @@ HTML5,
 CSS3,
 БЭМ,
 Адаптивный дизайн,
-Flexbox and Grid Layout
+Flexbox и Grid Layout
+JavaScript
 
 **Метод верстки**
 
