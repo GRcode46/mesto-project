@@ -28,39 +28,31 @@ const initialCards = [
   }
 ];
 
-// profile popup
 const profilePopup = document.querySelector('#popup-profile');
 const profilePopupForm = document.querySelector('#profile-popup-form');
 const profilePopupInputTitle = profilePopupForm.querySelector('#popup-profile-title');
 const profilePopupInputSubtitle = profilePopupForm.querySelector('#popup-profile-subtitle');
 const profilePopupButtonClose = profilePopupForm.querySelector('#profile-btn-close');
 
-// element popup
-
 const elementPopup = document.querySelector('#popup-element');
 const elementPopupButtonOpen = document.querySelector('.profile__btn-add');
 const elementPopupButtonClose = document.querySelector('#card-btn-close');
 const elementName = document.querySelector('#element-name');
 const elementLink = document.querySelector('#element-url');
+const elementsList = document.querySelector('.elements__list');
+const elementTemplate = document.querySelector('#element-template').content;
 
-
-// profile
 const profile = document.querySelector('.profile');
 const profileButtonEdit = profile.querySelector('.profile__btn-edit');
 const profileTitleValue = profile.querySelector('.profile__title');
 const profileSubtitleValue = profile.querySelector('.profile__subtitle');
 
-// popup-preview popup
 const previewPopup = document.querySelector('#popup-preview');
 const previewImage = previewPopup.querySelector('.popup-preview__image');
 const previewTitle = previewPopup.querySelector('.popup-preview__title');
 const previewPopupButtonClose = document.querySelector('#preview-btn-close');
 
-// elements block
-const elementsList = document.querySelector('.elements__list');
 
-// elements template
-const elementTemplate = document.querySelector('#element-template').content;
 
 //2. Functions
 const openPopup = (popup) => popup.classList.add('popup_opened'); // open edit profile popup
