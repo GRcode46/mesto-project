@@ -6,8 +6,11 @@
   justify-self: end;
   width: 22px;
   height: 19px;
-  padding: 0;
+  /*padding: 0;*/
   cursor: pointer;
+  /*grid-area: like;*/
+  padding-right: 20px;
+  /*justify-self: start;*/
 }
 
 .element__btn-like:hover {
