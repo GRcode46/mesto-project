@@ -42,7 +42,7 @@ const elementPopupButtonOpen = document.querySelector('.profile__btn-add');
 const elementPopupButtonClose = document.querySelector('#card-btn-close');
 const elementName = document.querySelector('#element-name');
 const elementLink = document.querySelector('#element-url');
-const elementTrash = document.querySelector('.element__trash')
+
 
 // profile
 const profile = document.querySelector('.profile');
