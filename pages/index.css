@@ -43,19 +43,22 @@
 @import url(../blocks/popup/_opacity/_strong.css);
 @import url(../blocks/popup/_opacity/_light.css);
 
-
 /*popup-preview popup*/
 @import url(../blocks/popup-preview/popup-preview.css);
 @import url(../blocks/popup-preview/__image/popup-preview__image.css);
 @import url(../blocks/popup-preview/__title/popup-preview__title.css);
 
 /*button styles*/
-@import url(../blocks/buttons/buttons.css);
-@import url(../blocks/buttons/__popup-close/buttons__popup-close.css);
+@import url(../blocks/button/button.css);
+@import url(../blocks/button/__popup-close/button__popup-close.css);
+@import url(../blocks/button/_state/button_state_inactive.css);
+
+/*form styles*/
+@import url(../blocks/form/__input/_type/form__input_type_error.css);
 
 /*debug style*/
 
 * {
-    /*border: 1px dotted red;*/
-    box-sizing: border-box;
+  border: 1px dotted red;
+  box-sizing: border-box;
 }

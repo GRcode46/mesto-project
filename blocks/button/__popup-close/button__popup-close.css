@@ -1,4 +1,4 @@
-.buttons__popup-close {
+.button__popup-close {
   width: 20px;
   height: 20px;
   border-style: none;
@@ -10,13 +10,13 @@
   padding: 0;
 }
 
-.buttons__popup-close:hover {
+.button__popup-close:hover {
   opacity: 0.6;
 }
 
 /* код для разрешения до 619 */
 @media screen and (min-width: 619px) {
-  .buttons__popup-close {
+  .button__popup-close {
     background: url("../../../images/popup-btn-close-big.svg") transparent no-repeat;
     width: 32px;
     height: 32px;
