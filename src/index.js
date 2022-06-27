@@ -6,15 +6,12 @@ import {
   profilePopupForm,
   elementPopup,
   elementPopupButtonOpen,
-  popups,
   popupCloseButtons
 } from "./components/const.js"
 
 import {
   closePopup,
   openPopup,
-  closePopupOutsideClick,
-  closePopupEscButton,
   loadEditProfileForm,
   saveEditProfileForm
 } from "./components/modal.js"
@@ -28,18 +25,18 @@ popupCloseButtons.forEach((popupCloseButton) => {
     closePopup(evt.target.closest("div.popup"))
   })
 })
-popups.forEach((popup) => {
-  popup.addEventListener('click', closePopupOutsideClick);
-  window.addEventListener('keydown', closePopupEscButton);
-})
+
 profileButtonEdit.addEventListener('click', () => {
   loadEditProfileForm(profilePopup);
 });
-profilePopupForm.addEventListener('submit', saveEditProfileForm);
+
 elementPopupButtonOpen.addEventListener('click', () => {
   openPopup(elementPopup);
 });
+
 elementPopup.addEventListener('submit', createElement);
+
+profilePopupForm.addEventListener('submit', saveEditProfileForm);
 
 enableValidation({
   formSelector: '.popup__form',
