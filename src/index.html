@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Место</title>
+  <!--  <link rel="stylesheet" href="pages/index.css">-->
+</head>
+<body class="root">
+<header class="header">
+  <a href="#" class="header__link">
+    <img src="<%=require('./images/logo.svg')%>" alt="Логотип Место" class="header__logo">
+  </a>
+</header>
+
+<main>
+  <section class="profile">
+    <img src="<%=require('./images/Jacques-Yves-Cousteau.jpg')%>" class="profile__avatar" alt="Аватар пользователя">
+    <div class="profile__info">
+      <h1 class="profile__title">Жак-Ив Кусто</h1>
+      <button type="button" class="profile__btn-edit" aria-label="Изменить профиль"></button>
+      <p class="profile__subtitle">Исследователь океана</p>
+    </div>
+    <button type="button" class="profile__btn-add" aria-label="Добавить элемент"></button>
+  </section>
+  <section class="elements" aria-label="Элементы галереи">
+    <ul class="elements__list">
+      <!--place for insert elements-->
+    </ul>
+  </section>
+</main>
+<footer class="footer">
+  <p class="footer__copyright">&copy;2022
+    <a href="https://github.com/GRcode46" target="_blank" class="footer__copyright-link">GRcode46</a>
+</footer>
+<!--profile popup start-->
+<div class="popup popup_opacity_light" id="popup-profile">
+  <div class="popup__container">
+    <form action="#" class="form popup__form" name="profileEdit" id="profile-popup-form" novalidate>
+      <button type="button" id="profile-btn-close" class="button__popup-close"
+              aria-label="Закрытие формы редактирования профиля"></button>
+      <h3 class="popup__header">Редактировать профиль</h3>
+      <fieldset class="form__input-fieldset">
+        <input type="text" name="popup-profile-title" class="form__input" placeholder="Введите имя"
+               id="popup-profile-title" minlength="2" maxlength="40" required>
+        <div class="popup-profile-title-error form__input-error"></div>
+        <fieldset class="form__input-fieldset">
+        </fieldset>
+        <input type="text" name="popup-profile-subtitle" class="form__input"
+               placeholder="Введите описание"
+               id="popup-profile-subtitle" minlength="2" maxlength="200" required>
+        <div class="popup-profile-subtitle-error form__input-error"></div>
+      </fieldset>
+      <button type="submit" class="popup__btn-account-submit">Сохранить</button>
+    </form>
+  </div>
+</div>
+<!--profile popup end-->
+<!--element popup start-->
+<div class="popup popup_opacity_light" id="popup-element">
+  <div class="popup__container">
+    <form action="#" class="form popup__form" name="cardAddForm" id="card-popup-form" novalidate>
+      <button type="button" id="card-btn-close" class="button__popup-close"
+              aria-label="Закрытие формы добавления карточки"></button>
+      <h3 class="popup__header">Новое место</h3>
+      <fieldset class="form__input-fieldset">
+        <input type="text" name="card-title" class="form__input" placeholder="Название"
+               id="element-name" minlength="2" maxlength="30" required>
+        <div class="element-name-error form__input-error"></div>
+      </fieldset>
+      <fieldset class="form__input-fieldset">
+        <input type="url" name="card-url" class="form__input" placeholder="Ссылка на картинку"
+               id="element-url" required>
+        <div class="element-url-error form__input-error"></div>
+      </fieldset>
+      <button type="submit" class="popup__btn-account-submit">Создать</button>
+    </form>
+  </div>
+</div>
+<!--element popup end-->
+<!--popup-preview popup start-->
+<div class="popup popup_opacity_strong" id="popup-preview">
+  <div class="popup-preview">
+    <button type="button" id="preview-btn-close" class="button__popup-close"></button>
+    <img src="" alt="" class="popup-preview__image">
+    <h3 class="popup-preview__title"></h3>
+  </div>
+</div>
+<!--element popup end-->
+<!--element template start-->
+<template id="element-template">
+  <li class="element">
+    <button type="button" class="element__trash"></button>
+    <img src="" alt="" class="element__image">
+    <div class="element__info">
+      <h2 class="element__name"></h2>
+      <button type="button" class="element__btn-like"></button>
+    </div>
+  </li>
+</template>
+<!--element template end-->
+</body>
+</html>
