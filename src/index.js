@@ -41,7 +41,7 @@ profilePopupForm.addEventListener('submit', saveEditProfileForm);
 enableValidation({
   formSelector: '.popup__form',
   inputSelector: '.form__input',
-  submitButtonSelector: '.popup__btn-account-submit',
+  submitButtonSelector: '.popup__btn-submit',
   inactiveButtonClass: 'button_state_inactive',
   inputErrorClass: 'form__input_type_error',
   errorClass: 'form__input-error_active'

@@ -24,8 +24,9 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
-const popups = document.querySelectorAll('.popup');
+// const popups = document.querySelectorAll('.popup');
 const popupCloseButtons = document.querySelectorAll('.button__popup-close');
+const elementSubmitButton = document.querySelector('#edit-card-btn-submit');
 const profile = document.querySelector('.profile');
 const profileButtonEdit = profile.querySelector('.profile__btn-edit');
 const profileTitleValue = profile.querySelector('.profile__title');
@@ -35,6 +36,7 @@ const profilePopupForm = document.querySelector('#profile-popup-form');
 const profilePopupInputTitle = profilePopupForm.querySelector('#popup-profile-title');
 const profilePopupInputSubtitle = profilePopupForm.querySelector('#popup-profile-subtitle');
 const elementPopup = document.querySelector('#popup-element');
+const elementPopupForm = document.querySelector('#card-popup-form');
 const elementPopupButtonOpen = document.querySelector('.profile__btn-add');
 const elementName = document.querySelector('#element-name');
 const elementLink = document.querySelector('#element-url');
@@ -46,7 +48,6 @@ const previewTitle = previewPopup.querySelector('.popup-preview__title');
 
 
 export {
-  popups,
   popupCloseButtons,
   profile,
   profileButtonEdit,
@@ -57,11 +58,13 @@ export {
   profilePopupInputTitle,
   profilePopupInputSubtitle,
   elementPopup,
+  elementPopupForm,
   elementPopupButtonOpen,
   elementName,
   elementLink,
   elementsList,
   elementTemplate,
+  elementSubmitButton,
   previewPopup,
   previewImage,
   previewTitle,
