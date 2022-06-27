@@ -8,7 +8,6 @@ const toggleButtonState = (inputList, buttonElement, params) => {
     buttonElement.classList.remove(params.inactiveButtonClass);
     buttonElement.disable = false;
   }
-
 };
 
 const showInputError = (formElement, inputElement, errorMessage, params) => {

@@ -9,15 +9,6 @@ import {
   profilePopup
 } from "./const.js"
 
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
-}
-
-
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-}
-
 function closePopupOutsideClick(evt) { // close any popup over outside click
   if (evt.target === evt.currentTarget) {
     closePopup(evt.target);
@@ -29,6 +20,18 @@ function closePopupEscButton(evt) {
     const targetPopup = document.querySelector('.popup_opened')
     closePopup(targetPopup);
   }
+}
+
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+  window.addEventListener('keydown', closePopupEscButton);
+  popup.addEventListener('click', closePopupOutsideClick);
+}
+
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+  window.removeEventListener('keydown', closePopupEscButton);
+  popup.removeEventListener('click', closePopupOutsideClick);
 }
 
 function openPopupImage(imageLink, imageTitle) { //open preview image popup
