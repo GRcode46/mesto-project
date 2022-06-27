@@ -1,9 +1,14 @@
+import {toggleButtonState} from "./utils.js"
+
 import {
+  elementPopupForm,
   elementLink,
   elementName,
   elementPopup,
   elementsList,
-  elementTemplate, initialCards
+  elementTemplate,
+  initialCards,
+  elementSubmitButton
 } from "./const";
 
 import {
@@ -40,8 +45,9 @@ function renderElement(element) { //render elements
 function createElement(evt) { //add image from popup
   evt.preventDefault();
   renderElement(loadElements(elementName.value, elementLink.value));
-  elementName.value = '';
-  elementLink.value = '';
+  elementPopupForm.reset();
+  elementSubmitButton.disabled = true;
+  elementSubmitButton.classList.add('button_state_inactive');
   closePopup(elementPopup);
 }
 

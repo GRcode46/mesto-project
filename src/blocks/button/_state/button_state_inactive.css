@@ -1,4 +1,7 @@
-.button_state_inactive {
-  color: #B8B8B8;
-  background: #EDEDED;
+.button_state_inactive:disabled {
+  color: #000;
+  background: #fff;
+  cursor: auto;
+  opacity: .2;
+  border: 1px solid #000;
 }

@@ -1,14 +1,5 @@
 //Validation functions
-
-const toggleButtonState = (inputList, buttonElement, params) => {
-  if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add(params.inactiveButtonClass);
-    buttonElement.disable = true;
-  } else {
-    buttonElement.classList.remove(params.inactiveButtonClass);
-    buttonElement.disable = false;
-  }
-};
+import {toggleButtonState} from "./utils.js"
 
 const showInputError = (formElement, inputElement, errorMessage, params) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
@@ -47,12 +38,6 @@ const setEventListeners = (formElement, params) => {
   });
 };
 
-
-const hasInvalidInput = (inputList) => {
-  return inputList.some((inputElement) => {
-    return !inputElement.validity.valid;
-  });
-};
 
 const enableValidation = (params) => {
   const formList = Array.from(document.querySelectorAll(params.formSelector));
