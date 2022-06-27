@@ -37,7 +37,6 @@
 @import url(../blocks/popup/__form/popup__form.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__container/popup__container.css);
-@import url(../blocks/popup/__account-text/popup__account-text.css);
 @import url(../blocks/popup/__btn-account-submit/popup__btn-account-submit.css);
 @import url(../blocks/popup/__header/popup__header.css);
 @import url(../blocks/popup/_opacity/_strong.css);
@@ -54,7 +53,11 @@
 @import url(../blocks/button/_state/button_state_inactive.css);
 
 /*form styles*/
+@import url(../blocks/form/__input/form__input.css);
 @import url(../blocks/form/__input/_type/form__input_type_error.css);
+@import url(../blocks/form/__input-fieldset/form__input-fieldset.css);
+@import url(../blocks/form/__input-error/form__input-error.css);
+@import url(../blocks/form/__input-error/form__input-error_active.css);
 
 /*debug style*/
 
