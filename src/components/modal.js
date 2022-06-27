@@ -32,6 +32,7 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened');
   window.removeEventListener('keydown', closePopupEscButton);
   popup.removeEventListener('click', closePopupOutsideClick);
+
 }
 
 function openPopupImage(imageLink, imageTitle) { //open preview image popup
