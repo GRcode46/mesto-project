@@ -42,15 +42,17 @@
       <button type="button" id="profile-btn-close" class="button__popup-close"
               aria-label="Закрытие формы редактирования профиля"></button>
       <h3 class="popup__header">Редактировать профиль</h3>
-      <input type="text" name="popup-profile-title" class="popup__account-text form__input" placeholder="Введите имя"
-             id="popup-profile-title" minlength="2" maxlength="40" required>
-      <span class="popup-profile-title-error form__input-error"></span>
-
-      <input type="text" name="popup-profile-subtitle" class="popup__account-text form__input"
-             placeholder="Введите описание"
-             id="popup-profile-subtitle" minlength="2" maxlength="200" required>
-      <span class="popup-profile-subtitle-error form__input-error"></span>
-
+      <fieldset class="form__input-fieldset">
+        <input type="text" name="popup-profile-title" class="form__input" placeholder="Введите имя"
+               id="popup-profile-title" minlength="2" maxlength="40" required>
+        <div class="popup-profile-title-error form__input-error"></div>
+        <fieldset class="form__input-fieldset">
+        </fieldset>
+        <input type="text" name="popup-profile-subtitle" class="form__input"
+               placeholder="Введите описание"
+               id="popup-profile-subtitle" minlength="2" maxlength="200" required>
+        <div class="popup-profile-subtitle-error form__input-error"></div>
+      </fieldset>
       <button type="submit" class="popup__btn-account-submit">Сохранить</button>
     </form>
   </div>
@@ -63,13 +65,16 @@
       <button type="button" id="card-btn-close" class="button__popup-close"
               aria-label="Закрытие формы добавления карточки"></button>
       <h3 class="popup__header">Новое место</h3>
-      <input type="text" name="card-title" class="popup__account-text form__input" placeholder="Название"
-             id="element-name" minlength="2" maxlength="30" required>
-      <span class="element-name-error form__input-error"></span>
-      <input type="url" name="card-url" class="popup__account-text form__input" placeholder="Ссылка на картинку"
-             id="element-url" required>
-      <span class="element-url-error form__input-error"></span>
-
+      <fieldset class="form__input-fieldset">
+        <input type="text" name="card-title" class="form__input" placeholder="Название"
+               id="element-name" minlength="2" maxlength="30" required>
+        <div class="element-name-error form__input-error"></div>
+      </fieldset>
+      <fieldset class="form__input-fieldset">
+        <input type="url" name="card-url" class="form__input" placeholder="Ссылка на картинку"
+               id="element-url" required>
+        <div class="element-url-error form__input-error"></div>
+      </fieldset>
       <button type="submit" class="popup__btn-account-submit">Создать</button>
     </form>
   </div>
