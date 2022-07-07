@@ -1,8 +1,4 @@
 import './pages/index.css';
-import {
-  getProfileData,
-  loadEditProfileForm
-} from "./components/profile.js"
 
 import {
   profileButtonEdit,
@@ -10,15 +6,13 @@ import {
   profilePopupForm,
   elementPopup,
   elementPopupButtonOpen,
-  popupCloseButtons,
-  cardsPath,
-  userDataPath
+  popupCloseButtons
 } from "./components/const.js"
 
 import {
   closePopup,
   openPopup,
-  // loadEditProfileForm,
+  loadEditProfileForm,
   saveEditProfileForm
 } from "./components/modal.js"
 
@@ -52,5 +46,3 @@ enableValidation({
   inputErrorClass: 'form__input_type_error',
   errorClass: 'form__input-error_active'
 });
-
-getProfileData(userDataPath)
