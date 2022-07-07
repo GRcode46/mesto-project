@@ -16,7 +16,6 @@ import {
   openPopupImage
 } from "./modal";
 
-
 function loadElements(elementName, elementLink) { // create element node
   const element = elementTemplate.querySelector('.element').cloneNode(true);
   const likeBtn = element.querySelector('.element__btn-like');
@@ -56,6 +55,4 @@ initialCards.reverse().forEach((element) => {
   renderElement(loadElements(element.name, element.link))
 });
 
-
 export {createElement}
-

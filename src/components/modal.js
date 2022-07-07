@@ -42,11 +42,11 @@ function openPopupImage(imageLink, imageTitle) { //open preview image popup
   previewImage.setAttribute('alt', imageTitle);
 }
 
-// function loadEditProfileForm(popup) { // open edit profile popup
-//   profilePopupInputTitle.value = profileTitleValue.textContent;
-//   profilePopupInputSubtitle.value = profileSubtitleValue.textContent;
-//   openPopup(popup);
-// }
+function loadEditProfileForm(popup) { // open edit profile popup
+  profilePopupInputTitle.value = profileTitleValue.textContent;
+  profilePopupInputSubtitle.value = profileSubtitleValue.textContent;
+  openPopup(popup);
+}
 
 function saveEditProfileForm(evt) { // Save edit profile form
   evt.preventDefault();
@@ -61,6 +61,6 @@ export {
   openPopupImage,
   closePopupOutsideClick,
   closePopupEscButton,
-  // loadEditProfileForm,
+  loadEditProfileForm,
   saveEditProfileForm
 }
