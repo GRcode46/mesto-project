@@ -14,7 +14,7 @@ function getProfileData(path) {
       profileTitleValue.textContent = data.name;
       profileSubtitleValue.textContent = data.about;
       profileAvatar.src = data.avatar;
-      console.log(data)
+      // console.log(data)
     })
     .catch((err) => {
       console.log(err)

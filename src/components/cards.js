@@ -1,4 +1,5 @@
-import {toggleButtonState} from "./utils.js"
+// import {toggleButtonState} from "./utils.js"
+import {getRequest} from "./api";
 
 import {
   elementPopupForm,
@@ -8,13 +9,30 @@ import {
   elementsList,
   elementTemplate,
   initialCards,
-  elementSubmitButton
+  elementSubmitButton,
+  cardsPath
 } from "./const";
 
 import {
   closePopup,
   openPopupImage
 } from "./modal";
+
+function getCardsData(path) {
+  getRequest(path)
+    .then((data) => {
+      // profileTitleValue.textContent = data.name;
+      // profileSubtitleValue.textContent = data.about;
+      // profileAvatar.src = data.avatar;
+      console.log(data)
+      data.reverse().forEach((element) => {
+        renderElement(loadElements(element.name, element.link))
+      });
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
 
 
 function loadElements(elementName, elementLink) { // create element node
@@ -43,19 +61,19 @@ function renderElement(element) { //render elements
 }
 
 
-function createElement(evt) { //add image from popup
-  evt.preventDefault();
-  renderElement(loadElements(elementName.value, elementLink.value));
-  elementPopupForm.reset();
-  elementSubmitButton.disabled = true;
-  elementSubmitButton.classList.add('button_state_inactive');
-  closePopup(elementPopup);
-}
+// function createElement(evt) { //add image from popup
+//   evt.preventDefault();
+//   renderElement(loadElements(elementName.value, elementLink.value));
+//   elementPopupForm.reset();
+//   elementSubmitButton.disabled = true;
+//   elementSubmitButton.classList.add('button_state_inactive');
+//   closePopup(elementPopup);
+// }
 
-initialCards.reverse().forEach((element) => {
-  renderElement(loadElements(element.name, element.link))
-});
+// initialCards.reverse().forEach((element) => {
+//   renderElement(loadElements(element.name, element.link))
+// });
 
 
-export {createElement}
+export {getCardsData}
 
