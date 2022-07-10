@@ -24,7 +24,7 @@ import {
 
 import {enableValidation} from "./components/validate.js";
 
-import {createElement} from "./components/cards.js"
+import {getCardsData} from "./components/cards.js"
 
 popupCloseButtons.forEach((popupCloseButton) => {
   popupCloseButton.addEventListener('click', function (evt) {
@@ -40,7 +40,7 @@ elementPopupButtonOpen.addEventListener('click', () => {
   openPopup(elementPopup);
 });
 
-elementPopup.addEventListener('submit', createElement);
+// elementPopup.addEventListener('submit', createElement);
 
 profilePopupForm.addEventListener('submit', saveEditProfileForm);
 
@@ -54,3 +54,4 @@ enableValidation({
 });
 
 getProfileData(userDataPath)
+getCardsData(cardsPath)
