@@ -14,13 +14,29 @@ function getRequest(target) {
     });
 }
 
-function postRequest() {
+
+// function getRequest1(target, body, method) {
+//   if body === null ?
+//   return fetch(`${apiURL}${target}`, {
+//
+//     headers: {
+//       authorization: token
+//     }
+//   })
+//     .then(res => res.json())
+//     .then((result) => {
+//       return result
+//     });
+// }
+
+function postRequest(target, body) {
   return fetch(`${apiURL}${target}`, {
-    method: POST,
+    method: 'POST',
     headers: {
       authorization: token,
-
-    }
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
   })
     .then(res => res.json())
     .then((result) => {

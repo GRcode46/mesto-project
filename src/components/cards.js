@@ -1,5 +1,5 @@
 // import {toggleButtonState} from "./utils.js"
-import {getRequest} from "./api";
+import {getRequest, postRequest} from "./api";
 
 import {
   elementPopupForm,
@@ -8,9 +8,10 @@ import {
   elementPopup,
   elementsList,
   elementTemplate,
-  initialCards,
-  elementSubmitButton,
-  cardsPath
+  elementSubmitButton, cardsPath,
+  // profilePopupInputTitle,
+  // profilePopupInputSubtitle,
+
 } from "./const";
 
 import {
@@ -28,6 +29,19 @@ function getCardsData(path) {
       data.reverse().forEach((element) => {
         renderElement(loadElements(element.name, element.link))
       });
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
+
+function addCardsData(path, body) {
+  postRequest(path, body)
+    .then((data) => {
+      renderElement(loadElements(data.name, data.link));
+      elementPopupForm.reset();
+      elementSubmitButton.disabled = true;
+      elementSubmitButton.classList.add('button_state_inactive');
     })
     .catch((err) => {
       console.log(err)
@@ -61,19 +75,16 @@ function renderElement(element) { //render elements
 }
 
 
-// function createElement(evt) { //add image from popup
-//   evt.preventDefault();
-//   renderElement(loadElements(elementName.value, elementLink.value));
-//   elementPopupForm.reset();
-//   elementSubmitButton.disabled = true;
-//   elementSubmitButton.classList.add('button_state_inactive');
-//   closePopup(elementPopup);
-// }
-
-// initialCards.reverse().forEach((element) => {
-//   renderElement(loadElements(element.name, element.link))
-// });
+function createElement(evt) { //add image from popup
+  evt.preventDefault();
+  const cardNewData = {
+    name: elementName.value,
+    link: elementLink.value
+  }
+  addCardsData(cardsPath, cardNewData)
+  closePopup(elementPopup);
+}
 
 
-export {getCardsData}
+export {getCardsData, createElement}
 
