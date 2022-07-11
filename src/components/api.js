@@ -40,11 +40,14 @@ function delRequest() {
     });
 }
 
-function updateRequest() {
+function patchRequest(target, body) {
   return fetch(`${apiURL}${target}`, {
+    method: 'PATCH',
     headers: {
-      authorization: token
-    }
+      authorization: token,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
   })
     .then(res => res.json())
     .then((result) => {
@@ -52,4 +55,4 @@ function updateRequest() {
     });
 }
 
-export {getRequest, postRequest, delRequest, updateRequest}
+export {getRequest, postRequest, delRequest, patchRequest}
