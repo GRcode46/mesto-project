@@ -1,10 +1,5 @@
+// Import scripts
 import './pages/index.css';
-import {
-  getProfile,
-  getProfileData,
-  loadEditProfileForm
-} from "./components/profile.js"
-
 import {
   profileButtonEdit,
   profilePopup,
@@ -17,15 +12,19 @@ import {
 } from "./components/const.js"
 
 import {
+  getProfile,
+  loadEditProfileForm
+} from "./components/profile.js"
+
+import {
   closePopup,
   openPopup,
-  // loadEditProfileForm,
   saveEditProfileForm
 } from "./components/modal.js"
 
 import {enableValidation} from "./components/validate.js";
 
-import {getCardsData} from "./components/cards.js"
+import {getCardsData, createElement} from "./components/cards.js"
 
 popupCloseButtons.forEach((popupCloseButton) => {
   popupCloseButton.addEventListener('click', function (evt) {
@@ -41,10 +40,11 @@ elementPopupButtonOpen.addEventListener('click', () => {
   openPopup(elementPopup);
 });
 
-// elementPopup.addEventListener('submit', createElement);
+elementPopup.addEventListener('submit', createElement);
 
 profilePopupForm.addEventListener('submit', saveEditProfileForm);
 
+// Enable form validation
 enableValidation({
   formSelector: '.popup__form',
   inputSelector: '.form__input',
@@ -53,7 +53,9 @@ enableValidation({
   inputErrorClass: 'form__input_type_error',
   errorClass: 'form__input-error_active'
 });
-// getProfileAvatar(userDataPath)
-// getProfileData(userDataPath)
+
+// Load profile info
 getProfile(userDataPath)
+
+// Load cards
 getCardsData(cardsPath)

@@ -3,20 +3,21 @@ import {
   previewTitle,
   previewPopup,
   profilePopupInputTitle,
-  profileTitleValue,
   profilePopupInputSubtitle,
-  profileSubtitleValue,
-  profilePopup, userDataPath
+  profilePopup,
+  userDataPath
 
 } from "./const.js"
 import {getProfileData, patchProfileData} from "./profile";
 
-function closePopupOutsideClick(evt) { // close any popup over outside click
+// Close any popup over outside click
+function closePopupOutsideClick(evt) {
   if (evt.target === evt.currentTarget) {
     closePopup(evt.target);
   }
 }
 
+// Close popup over press ESC
 function closePopupEscButton(evt) {
   if (evt.key === 'Escape') {
     const targetPopup = document.querySelector('.popup_opened')
@@ -24,12 +25,14 @@ function closePopupEscButton(evt) {
   }
 }
 
+// Open popup function, add listeners
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   window.addEventListener('keydown', closePopupEscButton);
   popup.addEventListener('click', closePopupOutsideClick);
 }
 
+// Close popup function, add listeners
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   window.removeEventListener('keydown', closePopupEscButton);
@@ -37,19 +40,15 @@ function closePopup(popup) {
 
 }
 
-function openPopupImage(imageLink, imageTitle) { //open preview image popup
+// Open image preview popup
+function openPopupImage(imageLink, imageTitle) {
   openPopup(previewPopup);
   previewImage.setAttribute('src', imageLink);
   previewTitle.textContent = imageTitle;
   previewImage.setAttribute('alt', imageTitle);
 }
 
-// function loadEditProfileForm(popup) { // open edit profile popup
-//   profilePopupInputTitle.value = profileTitleValue.textContent;
-//   profilePopupInputSubtitle.value = profileSubtitleValue.textContent;
-//   openPopup(popup);
-// }
-
+// Save profile changes
 function saveEditProfileForm(evt) { // Save edit profile form
   evt.preventDefault();
   const profileNewData = {
@@ -67,6 +66,5 @@ export {
   openPopupImage,
   closePopupOutsideClick,
   closePopupEscButton,
-  // loadEditProfileForm,
   saveEditProfileForm
 }
