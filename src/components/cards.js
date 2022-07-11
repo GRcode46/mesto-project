@@ -24,7 +24,7 @@ function getCardsData(path) {
       // profileTitleValue.textContent = data.name;
       // profileSubtitleValue.textContent = data.about;
       // profileAvatar.src = data.avatar;
-      console.log(data)
+      // console.log(data)
       data.reverse().forEach((element) => {
         renderElement(loadElements(element.name, element.link))
       });

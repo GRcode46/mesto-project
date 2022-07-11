@@ -1,5 +1,6 @@
 import './pages/index.css';
 import {
+  getProfile,
   getProfileData,
   loadEditProfileForm
 } from "./components/profile.js"
@@ -52,6 +53,7 @@ enableValidation({
   inputErrorClass: 'form__input_type_error',
   errorClass: 'form__input-error_active'
 });
-
-getProfileData(userDataPath)
+// getProfileAvatar(userDataPath)
+// getProfileData(userDataPath)
+getProfile(userDataPath)
 getCardsData(cardsPath)
