@@ -6,8 +6,10 @@ import {
   profileTitleValue,
   profilePopupInputSubtitle,
   profileSubtitleValue,
-  profilePopup
+  profilePopup, userDataPath
+
 } from "./const.js"
+import {getProfileData, patchProfileData} from "./profile";
 
 function closePopupOutsideClick(evt) { // close any popup over outside click
   if (evt.target === evt.currentTarget) {
@@ -50,9 +52,13 @@ function openPopupImage(imageLink, imageTitle) { //open preview image popup
 
 function saveEditProfileForm(evt) { // Save edit profile form
   evt.preventDefault();
-  profileTitleValue.textContent = profilePopupInputTitle.value;
-  profileSubtitleValue.textContent = profilePopupInputSubtitle.value;
+  const profileNewData = {
+    name: profilePopupInputTitle.value,
+    about: profilePopupInputSubtitle.value
+  }
+  patchProfileData(userDataPath, profileNewData);
   closePopup(profilePopup);
+
 }
 
 export {
