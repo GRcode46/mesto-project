@@ -2,7 +2,8 @@ const host = 'https://nomoreparties.co';
 const api_version = 'v1';
 const cohort = 'plus-cohort-10';
 const token = '57b8df36-44ff-41fe-a89b-2cd5bf92b88e' //не секьюрно конечно, но для опытов пойдёт
-const apiURL = `${host}/${api_version}/${cohort}/`
+const apiURL = `${host}/${api_version}/${cohort}/`;
+const userData = {};
 
 const cardsPath = 'cards'
 const userDataPath = 'users/me'
@@ -55,6 +56,10 @@ const previewPopup = document.querySelector('#popup-preview');
 const previewImage = previewPopup.querySelector('.popup-preview__image');
 const previewTitle = previewPopup.querySelector('.popup-preview__title');
 
+const deleteElementPopup = document.querySelector('#popup-card-delete-confirmation');
+const deletePopupBtnSubmit = deleteElementPopup.querySelector('#card-del-btn-submit');
+const deletePopupBtnReset = deleteElementPopup.querySelector('#card-del-btn-cancel');
+
 
 export {
   apiURL,
@@ -82,6 +87,9 @@ export {
   previewPopup,
   previewImage,
   previewTitle,
-  // initialCards
+  userData,
+  deleteElementPopup,
+  deletePopupBtnSubmit,
+  deletePopupBtnReset
 }
 

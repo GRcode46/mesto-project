@@ -44,8 +44,8 @@ function postRequest(target, body) {
     });
 }
 
-function delRequest() {
-  return fetch(`${apiURL}${target}`, {
+function delRequest(path, id) {
+  return fetch(`${apiURL}${target}/${id}`, {
     method: 'DELETE',
     headers: {
       authorization: token

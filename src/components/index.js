@@ -1,5 +1,5 @@
 // Import scripts
-import './pages/index.css';
+import '../pages/index.css';
 import {
   profileButtonEdit,
   profilePopup,
@@ -8,23 +8,25 @@ import {
   elementPopupButtonOpen,
   popupCloseButtons,
   cardsPath,
-  userDataPath
-} from "./components/const.js"
+  userDataPath,
+  deleteElementPopup,
+  deletePopupBtnReset
+} from "./const.js"
 
 import {
   getProfile,
   loadEditProfileForm
-} from "./components/profile.js"
+} from "./profile.js"
 
 import {
   closePopup,
   openPopup,
   saveEditProfileForm
-} from "./components/modal.js"
+} from "./modal.js"
 
-import {enableValidation} from "./components/validate.js";
+import {enableValidation} from "./validate.js";
 
-import {getCardsData, createElement} from "./components/cards.js"
+import {getCardsData, createElement, deleteElement} from "./cards.js"
 
 popupCloseButtons.forEach((popupCloseButton) => {
   popupCloseButton.addEventListener('click', function (evt) {
@@ -43,6 +45,13 @@ elementPopupButtonOpen.addEventListener('click', () => {
 elementPopup.addEventListener('submit', createElement);
 
 profilePopupForm.addEventListener('submit', saveEditProfileForm);
+
+deleteElementPopup.addEventListener('submit', deleteElement);
+
+deletePopupBtnReset.addEventListener('click', (evt) => {
+  closePopup(evt.target.closest("div.popup"));
+})
+
 
 // Enable form validation
 enableValidation({

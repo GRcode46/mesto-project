@@ -6,9 +6,14 @@ import {
   profilePopupInputSubtitle,
   profilePopup,
   userDataPath
-
 } from "./const.js"
-import {getProfileData, patchProfileData} from "./profile";
+
+import {
+  getProfileData,
+  patchProfileData
+} from "./profile.js";
+
+import {deleteElement} from "./cards";
 
 // Close any popup over outside click
 function closePopupOutsideClick(evt) {
@@ -26,7 +31,7 @@ function closePopupEscButton(evt) {
 }
 
 // Open popup function, add listeners
-function openPopup(popup) {
+function openPopup(popup, ...data) {
   popup.classList.add('popup_opened');
   window.addEventListener('keydown', closePopupEscButton);
   popup.addEventListener('click', closePopupOutsideClick);
@@ -37,19 +42,18 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened');
   window.removeEventListener('keydown', closePopupEscButton);
   popup.removeEventListener('click', closePopupOutsideClick);
-
 }
 
 // Open image preview popup
 function openPopupImage(imageLink, imageTitle) {
   openPopup(previewPopup);
-  previewImage.setAttribute('src', imageLink);
+  previewImage.src = imageLink;
   previewTitle.textContent = imageTitle;
-  previewImage.setAttribute('alt', imageTitle);
+  previewImage.alt = imageTitle;
 }
 
 // Save profile changes
-function saveEditProfileForm(evt) { // Save edit profile form
+function saveEditProfileForm(evt) {
   evt.preventDefault();
   const profileNewData = {
     name: profilePopupInputTitle.value,
