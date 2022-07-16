@@ -4,7 +4,8 @@ import {
   profileSubtitleValue,
   profileAvatar,
   profilePopupInputTitle,
-  profilePopupInputSubtitle
+  profilePopupInputSubtitle,
+  userData
 } from "./const.js"
 import {openPopup} from "./modal";
 
@@ -25,6 +26,8 @@ function getProfileData(path) {
     .then((data) => {
       profileTitleValue.textContent = data.name;
       profileSubtitleValue.textContent = data.about;
+      userData.id = data._id;
+      // console.log(userData.id)
     })
     .catch((err) => {
       console.log(err)
@@ -53,4 +56,10 @@ function loadEditProfileForm(popup) { // open edit profile popup
   openPopup(popup);
 }
 
-export {getProfile, getProfileData, getProfileAvatar, loadEditProfileForm, patchProfileData}
+export {
+  getProfile,
+  getProfileData,
+  getProfileAvatar,
+  loadEditProfileForm,
+  patchProfileData
+}

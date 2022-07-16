@@ -1,5 +1,4 @@
-// import {toggleButtonState} from "./utils.js"
-import {getRequest, postRequest} from "./api";
+import {getRequest, postRequest, delRequest} from "./api";
 
 import {
   elementPopupForm,
@@ -9,11 +8,13 @@ import {
   elementsList,
   elementTemplate,
   elementSubmitButton,
-  cardsPath
+  cardsPath,
+  userData,
+  deleteElementPopup
 } from "./const";
 
 import {
-  closePopup,
+  closePopup, openPopup,
   openPopupImage
 } from "./modal";
 
@@ -23,9 +24,10 @@ function getCardsData(path) {
       // profileTitleValue.textContent = data.name;
       // profileSubtitleValue.textContent = data.about;
       // profileAvatar.src = data.avatar;
-      console.log(data)
+
+      // console.log(data)
       data.reverse().forEach((element) => {
-        renderElement(loadElements(element.name, element.link, element.likes))
+        renderElement(loadElements(element.name, element.link, element.likes, element.owner._id))
         // console.log(element.likes.length)
       });
     })
@@ -47,6 +49,16 @@ function addCardsData(path, body) {
     })
 }
 
+function deleteElement(path, cardID) {
+  delRequest(path, cardID)
+    .then((data) => {
+      console.log(data)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
+
 // function getLikes(path) {
 //   getRequest(path)
 //     .then((data) => {
@@ -58,7 +70,7 @@ function addCardsData(path, body) {
 // }
 
 // create element node
-function loadElements(elementName, elementLink, elementLikes) {
+function loadElements(elementName, elementLink, elementLikes, elementID) {
   const element = elementTemplate.querySelector('.element').cloneNode(true);
   const likeBtn = element.querySelector('.element__btn-like');
   const elementImage = element.querySelector('.element__image');
@@ -69,15 +81,25 @@ function loadElements(elementName, elementLink, elementLikes) {
   element.querySelector('.element__name').textContent = elementName;
   elementImage.src = elementLink;
   elementImage.alt = elementName;
+  element.setAttribute("data-id", elementID);
   likeBtn.addEventListener("click", () => likeBtn.classList.toggle('element__btn-like_active'));
 
-  elementImage.addEventListener('click', () => { //add preview action for new elements from array
-    openPopupImage(elementLink, elementName)
+  if (elementID === userData.id) {
+    elementTrash.addEventListener('click', function (evt) {
+      openPopup(deleteElementPopup, elementID);
+    });
+  } else {
+    // Hide trash icon
+    elementTrash.classList.add('element__trash_disabled');
+
+  }
+
+  // Add preview action for new elements
+  elementImage.addEventListener('click', () => {
+    openPopupImage(elementLink, elementName);
   });
 
-  elementTrash.addEventListener('click', function (evt) {
-    evt.target.closest('.element').remove();
-  });
+
   return element;
 }
 
@@ -97,5 +119,5 @@ function createElement(evt) { //add image from popup
 }
 
 
-export {getCardsData, createElement}
+export {getCardsData, createElement, deleteElement}
 
