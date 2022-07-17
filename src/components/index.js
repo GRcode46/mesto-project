@@ -9,8 +9,9 @@ import {
   popupCloseButtons,
   cardsPath,
   userDataPath,
-  deleteElementPopup,
-  deletePopupBtnReset
+  // deleteElementPopup,
+  deletePopupBtnReset,
+  deletePopupBtnSubmit
 } from "./const.js"
 
 import {
@@ -46,10 +47,16 @@ elementPopup.addEventListener('submit', createElement);
 
 profilePopupForm.addEventListener('submit', saveEditProfileForm);
 
-deleteElementPopup.addEventListener('submit', deleteElement);
+// deleteElementPopup.addEventListener('submit', (evt) => {
+//   deleteElement(evt)
+// });
+deletePopupBtnSubmit.addEventListener('click', (evt) => {
+  deleteElement(cardsPath, evt)
+});
 
 deletePopupBtnReset.addEventListener('click', (evt) => {
   closePopup(evt.target.closest("div.popup"));
+  deletePopupBtnSubmit.removeAttribute('data-id')
 })
 
 

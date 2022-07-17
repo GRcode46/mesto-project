@@ -44,7 +44,7 @@ function postRequest(target, body) {
     });
 }
 
-function delRequest(path, id) {
+function delRequest(target, id) {
   return fetch(`${apiURL}${target}/${id}`, {
     method: 'DELETE',
     headers: {
