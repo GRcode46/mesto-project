@@ -47,9 +47,6 @@ elementPopup.addEventListener('submit', createElement);
 
 profilePopupForm.addEventListener('submit', saveEditProfileForm);
 
-// deleteElementPopup.addEventListener('submit', (evt) => {
-//   deleteElement(evt)
-// });
 deletePopupBtnSubmit.addEventListener('click', (evt) => {
   deleteElement(cardsPath, evt)
 });
