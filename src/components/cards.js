@@ -14,8 +14,9 @@ import {
 } from "./const";
 
 import {
-  closePopup, openPopup,
-  openPopupImage
+  closePopup,
+  openPopupImage,
+  openDeletePopup
 } from "./modal";
 
 function getCardsData(path) {
@@ -27,8 +28,8 @@ function getCardsData(path) {
 
       // console.log(data)
       data.reverse().forEach((element) => {
-        renderElement(loadElements(element.name, element.link, element.likes, element.owner._id))
-        // console.log(element.likes.length)
+        renderElement(loadElements(element.name, element.link, element.likes, element.owner._id, element._id))
+        console.log(element)
       });
     })
     .catch((err) => {
@@ -49,14 +50,18 @@ function addCardsData(path, body) {
     })
 }
 
-function deleteElement(path, cardID) {
-  delRequest(path, cardID)
-    .then((data) => {
-      console.log(data)
+function deleteElement(path, data) {
+  console.log(data.target.dataset.id)
+  const CardID = data.target.dataset.id;
+  delRequest(path, CardID)
+    .then((res) => {
+
+      console.log(res)
     })
     .catch((err) => {
       console.log(err)
     })
+  // console.log(data.target.dataset.id)
 }
 
 // function getLikes(path) {
@@ -70,23 +75,23 @@ function deleteElement(path, cardID) {
 // }
 
 // create element node
-function loadElements(elementName, elementLink, elementLikes, elementID) {
+function loadElements(elementName, elementLink, elementLikes, elementOwnerId, elementID) {
   const element = elementTemplate.querySelector('.element').cloneNode(true);
   const likeBtn = element.querySelector('.element__btn-like');
   const elementImage = element.querySelector('.element__image');
   const elementTrash = element.querySelector('.element__trash');
   const elementLikeCounter = element.querySelector('.element__like-counter');
-
   elementLikeCounter.textContent = elementLikes.length;
   element.querySelector('.element__name').textContent = elementName;
   elementImage.src = elementLink;
   elementImage.alt = elementName;
-  element.setAttribute("data-id", elementID);
+
   likeBtn.addEventListener("click", () => likeBtn.classList.toggle('element__btn-like_active'));
 
-  if (elementID === userData.id) {
+  if (elementOwnerId === userData.id) {
+    elementTrash.setAttribute("data-id", elementID);
     elementTrash.addEventListener('click', function (evt) {
-      openPopup(deleteElementPopup, elementID);
+      openDeletePopup(deleteElementPopup, elementID);
     });
   } else {
     // Hide trash icon

@@ -5,7 +5,8 @@ import {
   profilePopupInputTitle,
   profilePopupInputSubtitle,
   profilePopup,
-  userDataPath
+  userDataPath,
+  deletePopupBtnSubmit
 } from "./const.js"
 
 import {
@@ -31,10 +32,17 @@ function closePopupEscButton(evt) {
 }
 
 // Open popup function, add listeners
-function openPopup(popup, ...data) {
+function openPopup(popup) {
   popup.classList.add('popup_opened');
   window.addEventListener('keydown', closePopupEscButton);
   popup.addEventListener('click', closePopupOutsideClick);
+}
+
+// Open popup for delete card
+function openDeletePopup(popup, elementId) {
+  openPopup(popup)
+  deletePopupBtnSubmit.setAttribute('data-id', elementId);
+  // console.log(data)
 }
 
 // Close popup function, add listeners
@@ -70,5 +78,6 @@ export {
   openPopupImage,
   closePopupOutsideClick,
   closePopupEscButton,
-  saveEditProfileForm
+  saveEditProfileForm,
+  openDeletePopup
 }
