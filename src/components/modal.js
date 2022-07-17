@@ -5,10 +5,16 @@ import {
   profilePopupInputTitle,
   profilePopupInputSubtitle,
   profilePopup,
-  userDataPath
-
+  userDataPath,
+  deletePopupBtnSubmit
 } from "./const.js"
-import {getProfileData, patchProfileData} from "./profile";
+
+import {
+  getProfileData,
+  patchProfileData
+} from "./profile.js";
+
+import {deleteElement} from "./cards";
 
 // Close any popup over outside click
 function closePopupOutsideClick(evt) {
@@ -32,24 +38,30 @@ function openPopup(popup) {
   popup.addEventListener('click', closePopupOutsideClick);
 }
 
+// Open popup for delete card
+function openDeletePopup(popup, elementId) {
+  openPopup(popup)
+  deletePopupBtnSubmit.setAttribute('data-id', elementId);
+  // console.log(data)
+}
+
 // Close popup function, add listeners
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   window.removeEventListener('keydown', closePopupEscButton);
   popup.removeEventListener('click', closePopupOutsideClick);
-
 }
 
 // Open image preview popup
 function openPopupImage(imageLink, imageTitle) {
   openPopup(previewPopup);
-  previewImage.setAttribute('src', imageLink);
+  previewImage.src = imageLink;
   previewTitle.textContent = imageTitle;
-  previewImage.setAttribute('alt', imageTitle);
+  previewImage.alt = imageTitle;
 }
 
 // Save profile changes
-function saveEditProfileForm(evt) { // Save edit profile form
+function saveEditProfileForm(evt) {
   evt.preventDefault();
   const profileNewData = {
     name: profilePopupInputTitle.value,
@@ -66,5 +78,6 @@ export {
   openPopupImage,
   closePopupOutsideClick,
   closePopupEscButton,
-  saveEditProfileForm
+  saveEditProfileForm,
+  openDeletePopup
 }

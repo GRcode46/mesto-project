@@ -1,5 +1,4 @@
-// import {toggleButtonState} from "./utils.js"
-import {getRequest, postRequest} from "./api";
+import {getRequest, postRequest, delRequest} from "./api";
 
 import {
   elementPopupForm,
@@ -9,24 +8,23 @@ import {
   elementsList,
   elementTemplate,
   elementSubmitButton,
-  cardsPath
+  cardsPath,
+  userData,
+  deleteElementPopup
 } from "./const";
 
 import {
   closePopup,
-  openPopupImage
+  openPopupImage,
+  openDeletePopup
 } from "./modal";
 
 function getCardsData(path) {
   getRequest(path)
     .then((data) => {
-      // profileTitleValue.textContent = data.name;
-      // profileSubtitleValue.textContent = data.about;
-      // profileAvatar.src = data.avatar;
-      console.log(data)
       data.reverse().forEach((element) => {
-        renderElement(loadElements(element.name, element.link, element.likes))
-        // console.log(element.likes.length)
+        renderElement(loadElements(element.name, element.link, element.likes, element.owner._id, element._id))
+        // console.log(element)
       });
     })
     .catch((err) => {
@@ -37,10 +35,25 @@ function getCardsData(path) {
 function addCardsData(path, body) {
   postRequest(path, body)
     .then((data) => {
-      renderElement(loadElements(data.name, data.link, data.likes));
+      renderElement(loadElements(data.name, data.link, data.likes, data.owner._id, data._id));
       elementPopupForm.reset();
       elementSubmitButton.disabled = true;
       elementSubmitButton.classList.add('button_state_inactive');
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
+
+function deleteElement(path, data) {
+  console.log(data.target.dataset.id)
+  const CardID = data.target.dataset.id;
+  delRequest(path, CardID)
+    .then((res) => {
+      const elementForRemove = document.getElementById(CardID);
+      elementForRemove.remove();
+      closePopup(deleteElementPopup);
+
     })
     .catch((err) => {
       console.log(err)
@@ -58,26 +71,36 @@ function addCardsData(path, body) {
 // }
 
 // create element node
-function loadElements(elementName, elementLink, elementLikes) {
+function loadElements(elementName, elementLink, elementLikes, elementOwnerId, elementID) {
   const element = elementTemplate.querySelector('.element').cloneNode(true);
   const likeBtn = element.querySelector('.element__btn-like');
   const elementImage = element.querySelector('.element__image');
   const elementTrash = element.querySelector('.element__trash');
   const elementLikeCounter = element.querySelector('.element__like-counter');
-
   elementLikeCounter.textContent = elementLikes.length;
   element.querySelector('.element__name').textContent = elementName;
   elementImage.src = elementLink;
   elementImage.alt = elementName;
+
   likeBtn.addEventListener("click", () => likeBtn.classList.toggle('element__btn-like_active'));
 
-  elementImage.addEventListener('click', () => { //add preview action for new elements from array
-    openPopupImage(elementLink, elementName)
+  if (elementOwnerId === userData.id) {
+    element.setAttribute("id", elementID);
+    elementTrash.addEventListener('click', function (evt) {
+      openDeletePopup(deleteElementPopup, elementID);
+    });
+  } else {
+    // Hide trash icon
+    elementTrash.classList.add('element__trash_disabled');
+
+  }
+
+  // Add preview action for new elements
+  elementImage.addEventListener('click', () => {
+    openPopupImage(elementLink, elementName);
   });
 
-  elementTrash.addEventListener('click', function (evt) {
-    evt.target.closest('.element').remove();
-  });
+
   return element;
 }
 
@@ -97,5 +120,5 @@ function createElement(evt) { //add image from popup
 }
 
 
-export {getCardsData, createElement}
+export {getCardsData, createElement, deleteElement}
 
