@@ -22,14 +22,9 @@ import {
 function getCardsData(path) {
   getRequest(path)
     .then((data) => {
-      // profileTitleValue.textContent = data.name;
-      // profileSubtitleValue.textContent = data.about;
-      // profileAvatar.src = data.avatar;
-
-      // console.log(data)
       data.reverse().forEach((element) => {
         renderElement(loadElements(element.name, element.link, element.likes, element.owner._id, element._id))
-        console.log(element)
+        // console.log(element)
       });
     })
     .catch((err) => {
@@ -40,7 +35,7 @@ function getCardsData(path) {
 function addCardsData(path, body) {
   postRequest(path, body)
     .then((data) => {
-      renderElement(loadElements(data.name, data.link, data.likes));
+      renderElement(loadElements(data.name, data.link, data.likes, data.owner._id, data._id));
       elementPopupForm.reset();
       elementSubmitButton.disabled = true;
       elementSubmitButton.classList.add('button_state_inactive');
@@ -55,13 +50,14 @@ function deleteElement(path, data) {
   const CardID = data.target.dataset.id;
   delRequest(path, CardID)
     .then((res) => {
+      const elementForRemove = document.getElementById(CardID);
+      elementForRemove.remove();
+      closePopup(deleteElementPopup);
 
-      console.log(res)
     })
     .catch((err) => {
       console.log(err)
     })
-  // console.log(data.target.dataset.id)
 }
 
 // function getLikes(path) {
@@ -89,7 +85,7 @@ function loadElements(elementName, elementLink, elementLikes, elementOwnerId, el
   likeBtn.addEventListener("click", () => likeBtn.classList.toggle('element__btn-like_active'));
 
   if (elementOwnerId === userData.id) {
-    elementTrash.setAttribute("data-id", elementID);
+    element.setAttribute("id", elementID);
     elementTrash.addEventListener('click', function (evt) {
       openDeletePopup(deleteElementPopup, elementID);
     });
