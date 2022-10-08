@@ -14,7 +14,8 @@ const toggleButtonState = (inputList, buttonElement, params) => {
   }
 };
 
+
 export {
   toggleButtonState,
-  hasInvalidInput
+  hasInvalidInput,
 }
