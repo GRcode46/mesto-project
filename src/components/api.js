@@ -1,75 +1,59 @@
 //import vars from constants
-import {apiURL, token} from "./const.js";
+import {apiURL, headers} from "./const.js";
 
-//GET request and return JSON with results
+// Response template
+function response(res) {
+  if (res.ok) {
+    return res.json();
+  }
+  return Promise.reject(res);
+};
+
+
+// GET request
 function getRequest(target) {
   return fetch(`${apiURL}${target}`, {
-    headers: {
-      authorization: token
-    }
+    headers
   })
-    .then(res => res.json())
-    .then((result) => {
-      return result
-    });
+    .then(response)
 }
 
-
-// function getRequest1(target, body, method) {
-//   if body === null ?
-//   return fetch(`${apiURL}${target}`, {
-//
-//     headers: {
-//       authorization: token
-//     }
-//   })
-//     .then(res => res.json())
-//     .then((result) => {
-//       return result
-//     });
-// }
-
+// POST request
 function postRequest(target, body) {
   return fetch(`${apiURL}${target}`, {
     method: 'POST',
-    headers: {
-      authorization: token,
-      'Content-Type': 'application/json'
-    },
+    headers,
     body: JSON.stringify(body)
   })
-    .then(res => res.json())
-    .then((result) => {
-      return result
-    });
+    .then(response)
 }
 
-function delRequest(target, id) {
+// DELETE request
+function deleteRequest(target, id) {
   return fetch(`${apiURL}${target}/${id}`, {
     method: 'DELETE',
-    headers: {
-      authorization: token
-    }
+    headers
   })
-    .then(res => res.json())
-    .then((result) => {
-      return result
-    });
+    .then(response);
 }
 
+// PATCH request
 function patchRequest(target, body) {
   return fetch(`${apiURL}${target}`, {
     method: 'PATCH',
-    headers: {
-      authorization: token,
-      'Content-Type': 'application/json'
-    },
+    headers,
     body: JSON.stringify(body)
   })
-    .then(res => res.json())
-    .then((result) => {
-      return result
-    });
+    .then(response);
 }
 
-export {getRequest, postRequest, delRequest, patchRequest}
+// PUT request
+function putRequest(target, id) {
+  return fetch(`${apiURL}${target}/${id}`, {
+    method: 'PUT',
+    headers
+  })
+    .then(response);
+}
+
+export {getRequest, postRequest, deleteRequest, patchRequest, putRequest}
