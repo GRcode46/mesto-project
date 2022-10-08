@@ -1,39 +1,18 @@
+// API SETTINGS
 const host = 'https://nomoreparties.co';
 const api_version = 'v1';
-const cohort = 'plus-cohort-10';
-const token = '57b8df36-44ff-41fe-a89b-2cd5bf92b88e' //не секьюрно конечно, но для опытов пойдёт
+const cohort = 'plus-cohort-15';
+const token = 'b3089888-aa79-46f6-807a-8b107b401124' //не секьюрно конечно, но для опытов пойдёт
 const apiURL = `${host}/${api_version}/${cohort}/`;
 const userData = {};
-
+const headers = {
+  authorization: token,
+  'Content-Type': 'application/json'
+}
 const cardsPath = 'cards'
+const likesPath = `${cardsPath}/likes`
 const userDataPath = 'users/me'
 
-// const initialCards = [
-//   {
-//     name: 'Архыз',
-//     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-//   },
-//   {
-//     name: 'Челябинская область',
-//     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-//   },
-//   {
-//     name: 'Иваново',
-//     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-//   },
-//   {
-//     name: 'Камчатка',
-//     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-//   },
-//   {
-//     name: 'Холмогорский район',
-//     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-//   },
-//   {
-//     name: 'Байкал',
-//     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-//   }
-// ];
 const popupCloseButtons = document.querySelectorAll('.button__popup-close');
 const elementSubmitButton = document.querySelector('#edit-card-btn-submit');
 const profile = document.querySelector('.profile');
@@ -64,8 +43,9 @@ const deletePopupBtnReset = deleteElementPopup.querySelector('#card-del-btn-canc
 export {
   apiURL,
   cardsPath,
+  likesPath,
   userDataPath,
-  token,
+  headers,
   popupCloseButtons,
   profile,
   profileButtonEdit,
