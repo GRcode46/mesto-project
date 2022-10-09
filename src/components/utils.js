@@ -15,7 +15,16 @@ const toggleButtonState = (inputList, buttonElement, params) => {
 };
 
 
+function showLoadingStatus(isLoading, button) {
+  if (isLoading) {
+    button.textContent = "Сохранение...";
+  } else {
+    button.textContent = "Сохранить";
+  }
+}
+
 export {
   toggleButtonState,
   hasInvalidInput,
+  showLoadingStatus
 }

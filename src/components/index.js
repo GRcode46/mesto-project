@@ -10,19 +10,24 @@ import {
   cardsPath,
   userDataPath,
   // deleteElementPopup,
-  deletePopupBtnReset,
-  deletePopupBtnSubmit
+  // deletePopupBtnReset,
+  deletePopupBtnSubmit,
+  profileAvatarBtnEdit,
+  avatarPopup,
+  avatarLink
 } from "./const.js"
 
 import {
   getProfile,
-  loadEditProfileForm
+  loadEditProfileForm,
+
 } from "./profile.js"
 
 import {
   closePopup,
   openPopup,
-  saveEditProfileForm
+  saveEditProfileForm,
+  saveAvatarForm
 } from "./modal.js"
 
 import {enableValidation} from "./validate.js";
@@ -51,11 +56,18 @@ deletePopupBtnSubmit.addEventListener('click', (evt) => {
   deleteElement(cardsPath, evt)
 });
 
-deletePopupBtnReset.addEventListener('click', (evt) => {
-  closePopup(evt.target.closest("div.popup"));
-  deletePopupBtnSubmit.removeAttribute('data-id')
-})
+// deletePopupBtnReset.addEventListener('click', (evt) => {
+//   closePopup(evt.target.closest("div.popup"));
+//   deletePopupBtnSubmit.removeAttribute('data-id')
+// })
 
+profileAvatarBtnEdit.addEventListener('click', () => {
+  avatarLink.value.reset;
+
+  openPopup(avatarPopup);
+});
+
+avatarPopup.addEventListener('submit', saveAvatarForm);
 
 // Enable form validation
 enableValidation({
