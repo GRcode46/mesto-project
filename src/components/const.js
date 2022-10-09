@@ -41,7 +41,6 @@ const previewTitle = previewPopup.querySelector('.popup-preview__title');
 
 const deleteElementPopup = document.querySelector('#popup-card-delete-confirmation');
 const deletePopupBtnSubmit = deleteElementPopup.querySelector('#card-del-btn-submit');
-// const deletePopupBtnReset = deleteElementPopup.querySelector('#card-del-btn-cancel');
 
 const profileAvatarBtnEdit = profile.querySelector('.profile__avatar-btn');
 const avatarPopup = document.querySelector('#popup-avatar');
@@ -79,7 +78,6 @@ export {
   userData,
   deleteElementPopup,
   deletePopupBtnSubmit,
-  // deletePopupBtnReset,
   profileAvatarBtnEdit,
   avatarPopup,
   avatarSubmitButton,

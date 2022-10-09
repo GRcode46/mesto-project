@@ -7,9 +7,8 @@ import {
 
 import {
   showLoadingStatus
-  // delLike,
-  // putLike
 } from "./utils"
+
 import {
   elementPopupForm,
   elementLink,
@@ -21,7 +20,7 @@ import {
   cardsPath,
   userData,
   deleteElementPopup,
-  likesPath
+  likesPath, avatarSubmitButton, deletePopupBtnSubmit
 } from "./const";
 
 import {
@@ -75,6 +74,7 @@ function addCardsData(path, body) {
 function deleteElement(path, data) {
   // console.log(data.target.dataset.id)
   const CardID = data.target.dataset.id;
+  showLoadingStatus(true, deletePopupBtnSubmit);
   deleteRequest(path, CardID)
     .then(() => {
       const elementForRemove = document.getElementById(CardID);
@@ -85,6 +85,9 @@ function deleteElement(path, data) {
     .catch((err) => {
       console.log(err)
     })
+    .finally(() => {
+      showLoadingStatus(false, deletePopupBtnSubmit);
+    });
 }
 
 // function getLikes(path) {
