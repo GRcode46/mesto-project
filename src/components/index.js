@@ -9,8 +9,6 @@ import {
   popupCloseButtons,
   cardsPath,
   userDataPath,
-  // deleteElementPopup,
-  // deletePopupBtnReset,
   deletePopupBtnSubmit,
   profileAvatarBtnEdit,
   avatarPopup,
