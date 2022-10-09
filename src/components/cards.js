@@ -2,11 +2,11 @@ import {
   getRequest,
   postRequest,
   deleteRequest,
-  patchRequest,
   putRequest
 } from "./api";
 
 import {
+  showLoadingStatus
   // delLike,
   // putLike
 } from "./utils"
@@ -20,7 +20,8 @@ import {
   elementSubmitButton,
   cardsPath,
   userData,
-  deleteElementPopup, likesPath
+  deleteElementPopup,
+  likesPath
 } from "./const";
 
 import {
@@ -34,7 +35,7 @@ function getCardsData(path) {
     .then((data) => {
       data.reverse().forEach((element) => {
         renderElement(loadElements(element.name, element.link, element.likes, element.owner._id, element._id))
-        console.log(element)
+        // console.log(element)
       });
     })
     .catch((err) => {
@@ -43,6 +44,8 @@ function getCardsData(path) {
 }
 
 function addCardsData(path, body) {
+  showLoadingStatus(true, elementSubmitButton);
+
   postRequest(path, body)
     .then((data) => {
       renderElement(loadElements(data.name, data.link, data.likes, data.owner._id, data._id));
@@ -64,13 +67,16 @@ function addCardsData(path, body) {
       }
       // console.log(err)
     })
+    .finally(() => {
+      showLoadingStatus(false, elementSubmitButton);
+    });
 }
 
 function deleteElement(path, data) {
   // console.log(data.target.dataset.id)
   const CardID = data.target.dataset.id;
   deleteRequest(path, CardID)
-    .then((res) => {
+    .then(() => {
       const elementForRemove = document.getElementById(CardID);
       elementForRemove.remove();
       closePopup(deleteElementPopup);
@@ -103,29 +109,19 @@ function loadElements(elementName, elementLink, elementLikes, elementOwnerId, el
   elementImage.src = elementLink;
   elementImage.alt = elementName;
 
-  //
-  // function isLikedByMe(elementLike, elementOwnerId) {
-  //   return (elementLike === '7537b1858521a986747b9063')
-  // }
 
-  if (elementLikes.some((like) => like._id === userData.id)) {
-    console.log("est'");
-    console.log(elementLikes);
-    console.log(elementOwnerId);
-    likeBtn.classList.add('element__btn-like_active');
-  } else {
-    console.log('nety')
-  }
-
-  // if (isLikedByMe) {
+  // *** Check likes ***
+  // if (elementLikes.some((like) => like._id === userData.id)) {
   //   console.log("est'");
+  //   console.log(elementLikes);
+  //   console.log(elementOwnerId);
+  //   likeBtn.classList.add('element__btn-like_active');
   // } else {
-  //   console.log("netu");
+  //   console.log('nety')
   // }
 
 
   likeBtn.addEventListener('click', function (evt) {
-      // likeBtn..toggle('element__btn-like_active');
       if (evt.target.classList.contains('element__btn-like_active')) {
         deleteRequest(likesPath, elementID)
           .then((data) => {
@@ -147,10 +143,11 @@ function loadElements(elementName, elementLink, elementLikes, elementOwnerId, el
       }
     }
   );
-
+// Check owner for cards and show trash icon
   if (elementOwnerId === userData.id) {
+    // Show trash icon
     element.setAttribute("id", elementID);
-    elementTrash.addEventListener('click', function (evt) {
+    elementTrash.addEventListener('click', () => {
       openDeletePopup(deleteElementPopup, elementID);
     });
   } else {

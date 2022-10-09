@@ -6,15 +6,17 @@ import {
   profilePopupInputSubtitle,
   profilePopup,
   userDataPath,
-  deletePopupBtnSubmit
+  deletePopupBtnSubmit,
+  avatarPopup,
+  avatarLink,
+  userAvatarPath
 } from "./const.js"
 
 import {
-  getProfileData,
-  patchProfileData
+  patchProfileData,
+  patchAvatarImage
 } from "./profile.js";
 
-import {deleteElement} from "./cards";
 
 // Close any popup over outside click
 function closePopupOutsideClick(evt) {
@@ -72,6 +74,22 @@ function saveEditProfileForm(evt) {
 
 }
 
+// Save avatar image
+function saveAvatarForm(evt) {
+  evt.preventDefault();
+  const newAvatar = {
+    avatar: avatarLink.value
+    // about: profilePopupInputSubtitle.value
+  }
+  console.log(newAvatar)
+  // const newAvatar = avatarLink.value;
+  patchAvatarImage(userAvatarPath, newAvatar);
+  // console.log(newAvatar)
+  closePopup(avatarPopup);
+
+}
+
+
 export {
   openPopup,
   closePopup,
@@ -79,5 +97,6 @@ export {
   closePopupOutsideClick,
   closePopupEscButton,
   saveEditProfileForm,
-  openDeletePopup
+  openDeletePopup,
+  saveAvatarForm
 }

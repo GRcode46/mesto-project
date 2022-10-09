@@ -7,7 +7,7 @@ function response(res) {
     return res.json();
   }
   return Promise.reject(res);
-};
+}
 
 
 // GET request
@@ -47,6 +47,7 @@ function patchRequest(target, body) {
     .then(response);
 }
 
+
 // PUT request
 function putRequest(target, id) {
   return fetch(`${apiURL}${target}/${id}`, {
@@ -56,4 +57,11 @@ function putRequest(target, id) {
     .then(response);
 }
 
-export {getRequest, postRequest, deleteRequest, patchRequest, putRequest}
+export {
+  getRequest,
+  postRequest,
+  deleteRequest,
+  patchRequest,
+  putRequest,
+
+}

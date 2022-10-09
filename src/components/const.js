@@ -12,6 +12,7 @@ const headers = {
 const cardsPath = 'cards'
 const likesPath = `${cardsPath}/likes`
 const userDataPath = 'users/me'
+const userAvatarPath = `${userDataPath}/avatar`
 
 const popupCloseButtons = document.querySelectorAll('.button__popup-close');
 const elementSubmitButton = document.querySelector('#edit-card-btn-submit');
@@ -24,6 +25,9 @@ const profilePopup = document.querySelector('#popup-profile');
 const profilePopupForm = document.querySelector('#profile-popup-form');
 const profilePopupInputTitle = profilePopupForm.querySelector('#popup-profile-title');
 const profilePopupInputSubtitle = profilePopupForm.querySelector('#popup-profile-subtitle');
+
+const profileSubmitButton = document.querySelector('#edit-profile-btn-submit');
+
 const elementPopup = document.querySelector('#popup-element');
 const elementPopupForm = document.querySelector('#card-popup-form');
 const elementPopupButtonOpen = document.querySelector('.profile__btn-add');
@@ -37,8 +41,13 @@ const previewTitle = previewPopup.querySelector('.popup-preview__title');
 
 const deleteElementPopup = document.querySelector('#popup-card-delete-confirmation');
 const deletePopupBtnSubmit = deleteElementPopup.querySelector('#card-del-btn-submit');
-const deletePopupBtnReset = deleteElementPopup.querySelector('#card-del-btn-cancel');
+// const deletePopupBtnReset = deleteElementPopup.querySelector('#card-del-btn-cancel');
 
+const profileAvatarBtnEdit = profile.querySelector('.profile__avatar-btn');
+const avatarPopup = document.querySelector('#popup-avatar');
+const avatarSubmitButton = document.querySelector('#edit-avatar-btn-submit');
+const avatarLink = document.querySelector('#avatar-url');
+const avatarPopupForm = document.querySelector('#avatar-popup-form');
 
 export {
   apiURL,
@@ -70,6 +79,13 @@ export {
   userData,
   deleteElementPopup,
   deletePopupBtnSubmit,
-  deletePopupBtnReset
+  // deletePopupBtnReset,
+  profileAvatarBtnEdit,
+  avatarPopup,
+  avatarSubmitButton,
+  avatarLink,
+  userAvatarPath,
+  avatarPopupForm,
+  profileSubmitButton
 }
 

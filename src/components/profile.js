@@ -1,13 +1,27 @@
-import {getRequest, patchRequest} from "./api";
+import {
+  getRequest,
+  patchRequest
+} from "./api";
+
 import {
   profileTitleValue,
   profileSubtitleValue,
   profileAvatar,
   profilePopupInputTitle,
   profilePopupInputSubtitle,
-  userData
-} from "./const.js"
-import {openPopup} from "./modal";
+  userData,
+  userDataPath,
+  avatarPopupForm,
+  profileSubmitButton, avatarSubmitButton
+} from "./const"
+
+import {
+  openPopup
+} from "./modal";
+
+import {
+  showLoadingStatus
+} from "./utils";
 
 function getProfileAvatar(path) {
   getRequest(path)
@@ -27,7 +41,6 @@ function getProfileData(path) {
       profileTitleValue.textContent = data.name;
       profileSubtitleValue.textContent = data.about;
       userData.id = data._id;
-      // console.log(userData.id)
     })
     .catch((err) => {
       console.log(err)
@@ -35,6 +48,7 @@ function getProfileData(path) {
 }
 
 function patchProfileData(path, body) {
+  showLoadingStatus(true, profileSubmitButton);
   patchRequest(path, body)
     .then((data) => {
       profileTitleValue.textContent = data.name;
@@ -43,6 +57,25 @@ function patchProfileData(path, body) {
     .catch((err) => {
       console.log(err)
     })
+    .finally(() => {
+      showLoadingStatus(false, profileSubmitButton);
+    });
+}
+
+
+function patchAvatarImage(path, body) {
+  showLoadingStatus(true, avatarSubmitButton);
+  patchRequest(path, body)
+    .then(() => {
+      avatarPopupForm.reset();
+      getProfileAvatar(userDataPath)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+    .finally(() => {
+      showLoadingStatus(false, avatarSubmitButton);
+    });
 }
 
 function getProfile(path) {
@@ -56,10 +89,13 @@ function loadEditProfileForm(popup) { // open edit profile popup
   openPopup(popup);
 }
 
+
 export {
   getProfile,
   getProfileData,
   getProfileAvatar,
   loadEditProfileForm,
-  patchProfileData
+  patchProfileData,
+  patchAvatarImage
+
 }
