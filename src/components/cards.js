@@ -1,5 +1,4 @@
 import {
-  // request,
   addCard,
   deleteCard,
   putLike,
