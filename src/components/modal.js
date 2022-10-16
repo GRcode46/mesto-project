@@ -4,12 +4,8 @@ import {
   previewPopup,
   profilePopupInputTitle,
   profilePopupInputSubtitle,
-  profilePopup,
-  userDataPath,
   deletePopupBtnSubmit,
-  avatarPopup,
   avatarLink,
-  userAvatarPath
 } from "./const.js"
 
 import {
@@ -37,21 +33,20 @@ function closePopupEscButton(evt) {
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   window.addEventListener('keydown', closePopupEscButton);
-  popup.addEventListener('click', closePopupOutsideClick);
+  popup.addEventListener('mousedown', closePopupOutsideClick);
 }
 
 // Open popup for delete card
 function openDeletePopup(popup, elementId) {
   openPopup(popup)
   deletePopupBtnSubmit.setAttribute('data-id', elementId);
-  // console.log(data)
 }
 
 // Close popup function, add listeners
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   window.removeEventListener('keydown', closePopupEscButton);
-  popup.removeEventListener('click', closePopupOutsideClick);
+  popup.removeEventListener('mousedown', closePopupOutsideClick);
 }
 
 // Open image preview popup
@@ -65,27 +60,15 @@ function openPopupImage(imageLink, imageTitle) {
 // Save profile changes
 function saveEditProfileForm(evt) {
   evt.preventDefault();
-  const profileNewData = {
-    name: profilePopupInputTitle.value,
-    about: profilePopupInputSubtitle.value
-  }
-  patchProfileData(userDataPath, profileNewData);
-  closePopup(profilePopup);
+  patchProfileData(profilePopupInputTitle.value, profilePopupInputSubtitle.value);
+
 
 }
 
 // Save avatar image
 function saveAvatarForm(evt) {
   evt.preventDefault();
-  const newAvatar = {
-    avatar: avatarLink.value
-    // about: profilePopupInputSubtitle.value
-  }
-  console.log(newAvatar)
-  // const newAvatar = avatarLink.value;
-  patchAvatarImage(userAvatarPath, newAvatar);
-  // console.log(newAvatar)
-  closePopup(avatarPopup);
+  patchAvatarImage(avatarLink.value);
 
 }
 

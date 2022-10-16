@@ -1,67 +1,100 @@
 //import vars from constants
-import {apiURL, headers} from "./const.js";
+import {
+  apiURL,
+  headers,
+} from "./const.js";
 
-// Response template
-function response(res) {
+// Request
+function request(url, options) {
+  return fetch(url, options)
+    .then(checkResponse)
+}
+
+// Response
+function checkResponse(res) {
   if (res.ok) {
     return res.json();
   }
   return Promise.reject(res);
 }
 
-
-// GET request
-function getRequest(target) {
-  return fetch(`${apiURL}${target}`, {
+// GET profile
+function getProfile() {
+  return request(`${apiURL}/users/me`, {
     headers
   })
-    .then(response)
 }
 
-// POST request
-function postRequest(target, body) {
-  return fetch(`${apiURL}${target}`, {
+// GET cards
+function getCards() {
+  return request(`${apiURL}/cards`, {
+    headers
+  })
+}
+
+// ADD CARD request
+function addCard(body) {
+  return request(`${apiURL}/cards`, {
     method: 'POST',
     headers,
     body: JSON.stringify(body)
   })
-    .then(response)
 }
 
-// DELETE request
-function deleteRequest(target, id) {
-  return fetch(`${apiURL}${target}/${id}`, {
+// DELETE CARD request
+function deleteCard(id) {
+  return request(`${apiURL}/cards/${id}`, {
     method: 'DELETE',
     headers
   })
-    .then(response);
 }
 
-// PATCH request
-function patchRequest(target, body) {
-  return fetch(`${apiURL}${target}`, {
+// PATCH PROFILE DATA request
+function patchProfile(name, about) {
+  return request(`${apiURL}/users/me`, {
     method: 'PATCH',
     headers,
-    body: JSON.stringify(body)
+    body: JSON.stringify({
+      name: name,
+      about: about
+    })
   })
-    .then(response);
 }
 
+// PATCH PROFILE AVATAR request
+function patchAvatar(link) {
+  return request(`${apiURL}/users/me/avatar`, {
+    method: 'PATCH',
+    headers,
+    body: JSON.stringify({
+      avatar: link,
+    })
+  })
+}
 
-// PUT request
-function putRequest(target, id) {
-  return fetch(`${apiURL}${target}/${id}`, {
+// PUT LIKE request
+function putLike(id) {
+  return request(`${apiURL}/cards/likes/${id}`, {
     method: 'PUT',
     headers
   })
-    .then(response);
+}
+
+// DELETE LIKE request
+function deleteLike(id) {
+  return request(`${apiURL}/cards/likes/${id}`, {
+    method: 'DELETE',
+    headers
+  })
 }
 
 export {
-  getRequest,
-  postRequest,
-  deleteRequest,
-  patchRequest,
-  putRequest,
-
+  addCard,
+  deleteCard,
+  patchProfile,
+  patchAvatar,
+  putLike,
+  deleteLike,
+  getProfile,
+  getCards
 }
