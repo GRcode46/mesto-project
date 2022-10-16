@@ -1,12 +1,13 @@
 import {
-  getRequest,
-  postRequest,
-  deleteRequest,
-  putRequest
+  addCard,
+  deleteCard,
+  putLike,
+  deleteLike
 } from "./api";
 
+
 import {
-  showLoadingStatus
+  showSaveStatus
 } from "./utils"
 
 import {
@@ -17,10 +18,8 @@ import {
   elementsList,
   elementTemplate,
   elementSubmitButton,
-  cardsPath,
-  userData,
   deleteElementPopup,
-  likesPath, avatarSubmitButton, deletePopupBtnSubmit
+  deletePopupBtnSubmit,
 } from "./const";
 
 import {
@@ -29,25 +28,16 @@ import {
   openDeletePopup
 } from "./modal";
 
-function getCardsData(path) {
-  getRequest(path)
-    .then((data) => {
-      data.reverse().forEach((element) => {
-        renderElement(loadElements(element.name, element.link, element.likes, element.owner._id, element._id))
-        // console.log(element)
-      });
-    })
-    .catch((err) => {
-      console.log(err)
-    })
-}
+import {
+  userId
+} from "./index"
 
-function addCardsData(path, body) {
-  showLoadingStatus(true, elementSubmitButton);
-
-  postRequest(path, body)
+function addCardsData(body) {
+  showSaveStatus(true, elementSubmitButton);
+  addCard(body)
     .then((data) => {
-      renderElement(loadElements(data.name, data.link, data.likes, data.owner._id, data._id));
+      // console.log(data)
+      renderElement(createCard(data.name, data.link, data.likes, data.owner._id, data._id, userId));
       elementPopupForm.reset();
       elementSubmitButton.disabled = true;
       elementSubmitButton.classList.add('button_state_inactive');
@@ -64,44 +54,29 @@ function addCardsData(path, body) {
         }, 3000)
         console.log(err)
       }
-      // console.log(err)
     })
     .finally(() => {
-      showLoadingStatus(false, elementSubmitButton);
+      showSaveStatus(false, elementSubmitButton, 'Создать');
     });
 }
 
-function deleteElement(path, data) {
-  // console.log(data.target.dataset.id)
+function deleteElement(data) {
   const CardID = data.target.dataset.id;
-  showLoadingStatus(true, deletePopupBtnSubmit);
-  deleteRequest(path, CardID)
+  showSaveStatus(true, deletePopupBtnSubmit);
+  deleteCard(CardID)
     .then(() => {
-      const elementForRemove = document.getElementById(CardID);
-      elementForRemove.remove();
+      document.getElementById(CardID).remove()
       closePopup(deleteElementPopup);
-
     })
     .catch((err) => {
       console.log(err)
     })
     .finally(() => {
-      showLoadingStatus(false, deletePopupBtnSubmit);
+      showSaveStatus(false, deletePopupBtnSubmit, 'Да');
     });
 }
 
-// function getLikes(path) {
-//   getRequest(path)
-//     .then((data) => {
-//
-//     })
-//     .catch((err) => {
-//       console.log(err)
-//     })
-// }
-
-// create element node
-function loadElements(elementName, elementLink, elementLikes, elementOwnerId, elementID) {
+function createCard(elementName, elementLink, elementLikes, elementOwnerId, elementId, userId) {
   const element = elementTemplate.querySelector('.element').cloneNode(true);
   const likeBtn = element.querySelector('.element__btn-like');
   const elementImage = element.querySelector('.element__image');
@@ -111,22 +86,13 @@ function loadElements(elementName, elementLink, elementLikes, elementOwnerId, el
   element.querySelector('.element__name').textContent = elementName;
   elementImage.src = elementLink;
   elementImage.alt = elementName;
-
-
-  // *** Check likes ***
-  // if (elementLikes.some((like) => like._id === userData.id)) {
-  //   console.log("est'");
-  //   console.log(elementLikes);
-  //   console.log(elementOwnerId);
-  //   likeBtn.classList.add('element__btn-like_active');
-  // } else {
-  //   console.log('nety')
-  // }
-
-
+// Check owner for like and set like to active
+  if (elementLikes.some((like) => like._id === userId)) {
+    likeBtn.classList.add('element__btn-like_active');
+  }
   likeBtn.addEventListener('click', function (evt) {
       if (evt.target.classList.contains('element__btn-like_active')) {
-        deleteRequest(likesPath, elementID)
+        deleteLike(elementId)
           .then((data) => {
             elementLikeCounter.textContent = `${data.likes.length}`;
             likeBtn.classList.remove('element__btn-like_active');
@@ -135,7 +101,7 @@ function loadElements(elementName, elementLink, elementLikes, elementOwnerId, el
             console.log(err)
           })
       } else {
-        putRequest(likesPath, elementID)
+        putLike(elementId)
           .then((data) => {
             elementLikeCounter.textContent = `${data.likes.length}`;
             likeBtn.classList.add('element__btn-like_active');
@@ -147,11 +113,11 @@ function loadElements(elementName, elementLink, elementLikes, elementOwnerId, el
     }
   );
 // Check owner for cards and show trash icon
-  if (elementOwnerId === userData.id) {
+  if (elementOwnerId === userId) {
     // Show trash icon
-    element.setAttribute("id", elementID);
+    element.setAttribute("id", elementId);
     elementTrash.addEventListener('click', () => {
-      openDeletePopup(deleteElementPopup, elementID);
+      openDeletePopup(deleteElementPopup, elementId);
     });
   } else {
     // Hide trash icon
@@ -171,17 +137,20 @@ function renderElement(element) { //render elements
   elementsList.prepend(element);
 }
 
-
 function createElement(evt) { //add image from popup
   evt.preventDefault();
   const cardNewData = {
     name: elementName.value,
     link: elementLink.value
   }
-  addCardsData(cardsPath, cardNewData)
+  addCardsData(cardNewData)
 
 }
 
-
-export {getCardsData, createElement, deleteElement}
+export {
+  createElement,
+  deleteElement,
+  renderElement,
+  createCard
+}
 

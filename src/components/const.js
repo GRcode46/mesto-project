@@ -2,18 +2,12 @@
 const host = 'https://nomoreparties.co';
 const api_version = 'v1';
 const cohort = 'plus-cohort-15';
-const token = 'b3089888-aa79-46f6-807a-8b107b401124' //не секьюрно конечно, но для опытов пойдёт
-const apiURL = `${host}/${api_version}/${cohort}/`;
-const userData = {};
+const token = 'b3089888-aa79-46f6-807a-8b107b401124'
+const apiURL = `${host}/${api_version}/${cohort}`;
 const headers = {
   authorization: token,
   'Content-Type': 'application/json'
 }
-const cardsPath = 'cards'
-const likesPath = `${cardsPath}/likes`
-const userDataPath = 'users/me'
-const userAvatarPath = `${userDataPath}/avatar`
-
 const popupCloseButtons = document.querySelectorAll('.button__popup-close');
 const elementSubmitButton = document.querySelector('#edit-card-btn-submit');
 const profile = document.querySelector('.profile');
@@ -25,9 +19,7 @@ const profilePopup = document.querySelector('#popup-profile');
 const profilePopupForm = document.querySelector('#profile-popup-form');
 const profilePopupInputTitle = profilePopupForm.querySelector('#popup-profile-title');
 const profilePopupInputSubtitle = profilePopupForm.querySelector('#popup-profile-subtitle');
-
 const profileSubmitButton = document.querySelector('#edit-profile-btn-submit');
-
 const elementPopup = document.querySelector('#popup-element');
 const elementPopupForm = document.querySelector('#card-popup-form');
 const elementPopupButtonOpen = document.querySelector('.profile__btn-add');
@@ -38,10 +30,8 @@ const elementTemplate = document.querySelector('#element-template').content;
 const previewPopup = document.querySelector('#popup-preview');
 const previewImage = previewPopup.querySelector('.popup-preview__image');
 const previewTitle = previewPopup.querySelector('.popup-preview__title');
-
 const deleteElementPopup = document.querySelector('#popup-card-delete-confirmation');
 const deletePopupBtnSubmit = deleteElementPopup.querySelector('#card-del-btn-submit');
-
 const profileAvatarBtnEdit = profile.querySelector('.profile__avatar-btn');
 const avatarPopup = document.querySelector('#popup-avatar');
 const avatarSubmitButton = document.querySelector('#edit-avatar-btn-submit');
@@ -50,9 +40,6 @@ const avatarPopupForm = document.querySelector('#avatar-popup-form');
 
 export {
   apiURL,
-  cardsPath,
-  likesPath,
-  userDataPath,
   headers,
   popupCloseButtons,
   profile,
@@ -75,15 +62,13 @@ export {
   previewPopup,
   previewImage,
   previewTitle,
-  userData,
   deleteElementPopup,
   deletePopupBtnSubmit,
   profileAvatarBtnEdit,
   avatarPopup,
   avatarSubmitButton,
   avatarLink,
-  userAvatarPath,
   avatarPopupForm,
-  profileSubmitButton
+  profileSubmitButton,
 }
 
