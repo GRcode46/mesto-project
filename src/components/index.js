@@ -1,4 +1,4 @@
-// Import scripts
+// Import scripts & styles
 import '../pages/index.css';
 import {
   profileButtonEdit,
@@ -7,19 +7,22 @@ import {
   elementPopup,
   elementPopupButtonOpen,
   popupCloseButtons,
-  cardsPath,
-  userDataPath,
   deletePopupBtnSubmit,
   profileAvatarBtnEdit,
   avatarPopup,
-  avatarLink
+  profileTitleValue,
+  profileSubtitleValue,
+  profileAvatar,
 } from "./const.js"
 
 import {
-  getProfile,
-  loadEditProfileForm,
-
+  loadEditProfileForm
 } from "./profile.js"
+
+import {
+  getProfile,
+  getCards
+} from "./api";
 
 import {
   closePopup,
@@ -28,13 +31,23 @@ import {
   saveAvatarForm
 } from "./modal.js"
 
-import {enableValidation} from "./validate.js";
+import {
+  enableValidation,
+} from "./validate.js";
 
-import {getCardsData, createElement, deleteElement} from "./cards.js"
+import {
+  createElement,
+  deleteElement,
+  renderElement,
+  createCard
+} from "./cards.js"
+
+export let userId = null;
 
 popupCloseButtons.forEach((popupCloseButton) => {
+  const popup = popupCloseButton.closest(".popup");
   popupCloseButton.addEventListener('click', function (evt) {
-    closePopup(evt.target.closest("div.popup"))
+    closePopup(popup)
   })
 })
 
@@ -51,17 +64,10 @@ elementPopup.addEventListener('submit', createElement);
 profilePopupForm.addEventListener('submit', saveEditProfileForm);
 
 deletePopupBtnSubmit.addEventListener('click', (evt) => {
-  deleteElement(cardsPath, evt)
+  deleteElement(evt)
 });
 
-// deletePopupBtnReset.addEventListener('click', (evt) => {
-//   closePopup(evt.target.closest("div.popup"));
-//   deletePopupBtnSubmit.removeAttribute('data-id')
-// })
-
 profileAvatarBtnEdit.addEventListener('click', () => {
-  avatarLink.value.reset;
-
   openPopup(avatarPopup);
 });
 
@@ -77,8 +83,19 @@ enableValidation({
   errorClass: 'form__input-error_active'
 });
 
-// Load profile info
-getProfile(userDataPath)
-
-// Load cards
-getCardsData(cardsPath)
+// export let userId;
+Promise.all([getProfile(), getCards()])
+  .then(([userData, cardsData]) => {
+    profileTitleValue.textContent = userData.name;
+    profileSubtitleValue.textContent = userData.about;
+    profileAvatar.src = userData.avatar;
+    userId = userData._id;
+    cardsData.reverse().forEach((element) => {
+      renderElement(createCard(element.name, element.link, element.likes, element.owner._id, element._id, userData._id, userId))
+    });
+  })
+  .catch((err) => {
+    profileTitleValue.textContent = 'Сервер болеть.'
+    profileSubtitleValue.textContent = 'Заходите завтра.'
+    console.error('Ошибка при загрузке данных с сервера.', err);
+  });

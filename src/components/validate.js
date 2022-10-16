@@ -1,5 +1,11 @@
 //Validation functions
-import {toggleButtonState} from "./utils.js"
+// import {hasInvalidInput} from "./utils.js"
+
+const hasInvalidInput = (inputList) => {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  });
+};
 
 const showInputError = (formElement, inputElement, errorMessage, params) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
@@ -49,4 +55,17 @@ const enableValidation = (params) => {
   });
 };
 
-export {enableValidation};
+const toggleButtonState = (inputList, buttonElement, params) => {
+  if (hasInvalidInput(inputList)) {
+    buttonElement.classList.add(params.inactiveButtonClass);
+    buttonElement.disabled = true;
+  } else {
+    buttonElement.classList.remove(params.inactiveButtonClass);
+    buttonElement.disabled = false;
+  }
+};
+
+export {
+  toggleButtonState,
+  enableValidation
+};

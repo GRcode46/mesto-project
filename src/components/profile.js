@@ -1,86 +1,60 @@
 import {
-  getRequest,
-  patchRequest
+  patchProfile,
+  patchAvatar
 } from "./api";
 
 import {
   profileTitleValue,
   profileSubtitleValue,
-  profileAvatar,
   profilePopupInputTitle,
   profilePopupInputSubtitle,
-  userData,
-  userDataPath,
   avatarPopupForm,
-  profileSubmitButton, avatarSubmitButton
+  profileSubmitButton,
+  avatarSubmitButton,
+  profileAvatar,
+  avatarPopup,
+  profilePopup
 } from "./const"
 
 import {
+  closePopup,
   openPopup
 } from "./modal";
 
 import {
-  showLoadingStatus
+  showSaveStatus
 } from "./utils";
 
-function getProfileAvatar(path) {
-  getRequest(path)
-    .then((data) => {
-      profileAvatar.src = data.avatar;
-      // console.log(data)
-    })
-    .catch((err) => {
-      console.log(err)
-    })
-}
-
-
-function getProfileData(path) {
-  getRequest(path)
+function patchProfileData(name, about) {
+  showSaveStatus(true, profileSubmitButton);
+  patchProfile(name, about)
     .then((data) => {
       profileTitleValue.textContent = data.name;
       profileSubtitleValue.textContent = data.about;
-      userData.id = data._id;
-    })
-    .catch((err) => {
-      console.log(err)
-    })
-}
-
-function patchProfileData(path, body) {
-  showLoadingStatus(true, profileSubmitButton);
-  patchRequest(path, body)
-    .then((data) => {
-      profileTitleValue.textContent = data.name;
-      profileSubtitleValue.textContent = data.about;
+      closePopup(profilePopup);
     })
     .catch((err) => {
       console.log(err)
     })
     .finally(() => {
-      showLoadingStatus(false, profileSubmitButton);
+      showSaveStatus(false, profileSubmitButton);
     });
 }
 
-
-function patchAvatarImage(path, body) {
-  showLoadingStatus(true, avatarSubmitButton);
-  patchRequest(path, body)
-    .then(() => {
+function patchAvatarImage(link) {
+  showSaveStatus(true, avatarSubmitButton);
+  patchAvatar(link)
+    .then((data) => {
       avatarPopupForm.reset();
-      getProfileAvatar(userDataPath)
+      profileAvatar.src = data.avatar;
+      closePopup(avatarPopup);
     })
     .catch((err) => {
       console.log(err)
     })
     .finally(() => {
-      showLoadingStatus(false, avatarSubmitButton);
+      showSaveStatus(false, avatarSubmitButton);
     });
-}
-
-function getProfile(path) {
-  getProfileData(path)
-  getProfileAvatar(path)
 }
 
 function loadEditProfileForm(popup) { // open edit profile popup
@@ -89,11 +63,7 @@ function loadEditProfileForm(popup) { // open edit profile popup
   openPopup(popup);
 }
 
-
 export {
-  getProfile,
-  getProfileData,
-  getProfileAvatar,
   loadEditProfileForm,
   patchProfileData,
   patchAvatarImage
