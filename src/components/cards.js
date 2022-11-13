@@ -121,7 +121,7 @@ function createCard(elementName, elementLink, elementLikes, elementOwnerId, elem
     });
   } else {
     // Hide trash icon
-    elementTrash.classList.add('element__trash_disabled');
+    elementTrash.remove()
   }
 
   // Add preview action for new elements
