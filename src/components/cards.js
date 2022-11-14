@@ -30,7 +30,7 @@ import {
 
 import {
   userId
-} from "./index"
+} from "../pages"
 
 function addCardsData(body) {
   showSaveStatus(true, elementSubmitButton);

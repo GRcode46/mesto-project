@@ -1,5 +1,5 @@
 // Import scripts & styles
-import '../pages/index.css';
+import './index.css';
 import {
   profileButtonEdit,
   profilePopup,
@@ -13,34 +13,34 @@ import {
   profileTitleValue,
   profileSubtitleValue,
   profileAvatar,
-} from "./const.js"
+} from "../components/const.js"
 
 import {
   loadEditProfileForm
-} from "./profile.js"
+} from "../components/profile.js"
 
 import {
   getProfile,
   getCards
-} from "./api";
+} from "../components/api";
 
 import {
   closePopup,
   openPopup,
   saveEditProfileForm,
   saveAvatarForm
-} from "./modal.js"
+} from "../components/modal.js"
 
 import {
   enableValidation,
-} from "./validate.js";
+} from "../components/validate.js";
 
 import {
   createElement,
   deleteElement,
   renderElement,
   createCard
-} from "./cards.js"
+} from "../components/cards.js"
 
 export let userId = null;
 
