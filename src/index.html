@@ -55,12 +55,12 @@
               aria-label="Закрытие формы редактирования профиля"></button>
       <h3 class="popup__header">Редактировать профиль</h3>
       <fieldset class="form__input-fieldset">
-        <input type="text" name="popup-profile-title" class="form__input" placeholder="Введите имя"
+        <input type="text" name="name" class="form__input" placeholder="Введите имя"
                id="popup-profile-title" minlength="2" maxlength="40" required>
         <div class="popup-profile-title-error form__input-error"></div>
         <fieldset class="form__input-fieldset">
         </fieldset>
-        <input type="text" name="popup-profile-subtitle" class="form__input"
+        <input type="text" name="about" class="form__input"
                placeholder="Введите описание"
                id="popup-profile-subtitle" minlength="2" maxlength="200" required>
         <div class="popup-profile-subtitle-error form__input-error"></div>
@@ -78,12 +78,12 @@
               aria-label="Закрытие формы добавления карточки"></button>
       <h3 class="popup__header">Новое место</h3>
       <fieldset class="form__input-fieldset">
-        <input type="text" name="card-title" class="form__input" placeholder="Название"
+        <input type="text" name="name" class="form__input" placeholder="Название"
                id="element-name" minlength="2" maxlength="30" required>
         <div class="element-name-error form__input-error"></div>
       </fieldset>
       <fieldset class="form__input-fieldset">
-        <input type="url" name="card-url" class="form__input" placeholder="Ссылка на картинку"
+        <input type="url" name="link" class="form__input" placeholder="Ссылка на картинку"
                id="element-url" required>
         <div class="element-url-error form__input-error"></div>
       </fieldset>
@@ -101,7 +101,7 @@
               aria-label="Закрытие формы загрузки аватара"></button>
       <h3 class="popup__header">Обновить аватар</h3>
       <fieldset class="form__input-fieldset">
-        <input type="url" name="avatar-url" class="form__input" placeholder="Ссылка на аватар"
+        <input type="url" name="avatar" class="form__input" placeholder="Ссылка на аватар"
                id="avatar-url" required>
         <div class="avatar-url-error form__input-error"></div>
       </fieldset>
@@ -144,7 +144,7 @@
       <h2 class="element__name"></h2>
       <div class="element__like-container">
         <button type="button" class="element__btn-like"></button>
-        <span class="element__like-counter">1</span>
+        <span class="element__like-counter"></span>
       </div>
     </div>
   </li>

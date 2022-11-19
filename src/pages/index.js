@@ -1,98 +1,184 @@
-// Import scripts & styles
+// Import styles % scripts
 import './index.css';
 import {
-  profileButtonEdit,
-  profilePopup,
-  profilePopupForm,
-  elementPopup,
+  apiURL,
+  avatarPopupForm,
   elementPopupButtonOpen,
-  popupCloseButtons,
-  deletePopupBtnSubmit,
+  elementPopupForm,
+  headers,
   profileAvatarBtnEdit,
-  avatarPopup,
-  profileTitleValue,
+  profileButtonEdit,
+  profilePopupForm,
+  profilePopupInputSubtitle,
+  profilePopupInputTitle,
   profileSubtitleValue,
-  profileAvatar,
-} from "../components/const.js"
+  profileTitleValue,
+  selectors,
+  cardsList
+} from "../vendor/const.js"
 
-import {
-  loadEditProfileForm
-} from "../components/profile.js"
+import Api from "../components/Api"
+import UserInfo from "../components/UserInfo";
+import Section from "../components/Section"
+import Card from "../components/Card"
+import PopupWithForm from "../components/PopupWithForm"
+import PopupWithImage from "../components/PopupWithImage"
+import FormValidator from "../components/FormValidator"
 
-import {
-  getProfile,
-  getCards
-} from "../components/api";
+let userId = null;
 
-import {
-  closePopup,
-  openPopup,
-  saveEditProfileForm,
-  saveAvatarForm
-} from "../components/modal.js"
+// Create Api instances
+const api = new Api(apiURL, headers);
 
-import {
-  enableValidation,
-} from "../components/validate.js";
+// Create UserInfo instances
+const userInfo = new UserInfo();
 
-import {
-  createElement,
-  deleteElement,
-  renderElement,
-  createCard
-} from "../components/cards.js"
+// Create Section instances
+const cardList = new Section(
+  {
+    renderItems: (item) => {
+      cardList.addItem(createCardClass(item, selectors.cardsTemplateSelector));
+    },
+  },
+  cardsList
+);
 
-export let userId = null;
+// Create FormValidator instances
+const editFormValidator = new FormValidator(selectors, profilePopupForm);
+const avatarFormValidator = new FormValidator(selectors, avatarPopupForm);
+const addFormValidator = new FormValidator(selectors, elementPopupForm);
 
-popupCloseButtons.forEach((popupCloseButton) => {
-  const popup = popupCloseButton.closest(".popup");
-  popupCloseButton.addEventListener('click', function (evt) {
-    closePopup(popup)
-  })
-})
+// Create Popup instances
+const editProfilePopup = new PopupWithForm(selectors.popupProfileSelector, profileFormSubmitHandler);
+const addCardPopup = new PopupWithForm(selectors.popupCardSelector, addFormSubmitHandler);
+const editAvatarPopup = new PopupWithForm(selectors.popupAvatarSelector, changeAvatarHandler);
+const imagePreviewPopup = new PopupWithImage(selectors.popupImagePreviewSelector);
 
-profileButtonEdit.addEventListener('click', () => {
-  loadEditProfileForm(profilePopup);
+// Enable validation for forms
+editFormValidator.enableValidation();
+avatarFormValidator.enableValidation();
+addFormValidator.enableValidation();
+
+// Add eventListeners for popups
+editProfilePopup.setEventListeners();
+addCardPopup.setEventListeners()
+editAvatarPopup.setEventListeners();
+imagePreviewPopup.setEventListeners();
+
+// Add eventListeners for buttons
+elementPopupButtonOpen.addEventListener("click", () => {
+  addCardPopup.openPopup();
+  addFormValidator.setInitialState();
 });
 
-elementPopupButtonOpen.addEventListener('click', () => {
-  openPopup(elementPopup);
+profileButtonEdit.addEventListener("click", () => {
+  const {name, about} = userInfo.getUserInfo();
+  profilePopupInputTitle.value = name;
+  profilePopupInputSubtitle.value = about;
+  editProfilePopup.openPopup();
+  editFormValidator.setInitialState();
 });
 
-elementPopup.addEventListener('submit', createElement);
-
-profilePopupForm.addEventListener('submit', saveEditProfileForm);
-
-deletePopupBtnSubmit.addEventListener('click', (evt) => {
-  deleteElement(evt)
+profileAvatarBtnEdit.addEventListener("click", () => {
+  editAvatarPopup.openPopup();
+  avatarFormValidator.setInitialState();
 });
 
-profileAvatarBtnEdit.addEventListener('click', () => {
-  openPopup(avatarPopup);
-});
-
-avatarPopup.addEventListener('submit', saveAvatarForm);
-
-// Enable form validation
-enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.form__input',
-  submitButtonSelector: '.popup__btn-submit',
-  inactiveButtonClass: 'button_state_inactive',
-  inputErrorClass: 'form__input_type_error',
-  errorClass: 'form__input-error_active'
-});
-
-// export let userId;
-Promise.all([getProfile(), getCards()])
-  .then(([userData, cardsData]) => {
-    profileTitleValue.textContent = userData.name;
-    profileSubtitleValue.textContent = userData.about;
-    profileAvatar.src = userData.avatar;
-    userId = userData._id;
-    cardsData.reverse().forEach((element) => {
-      renderElement(createCard(element.name, element.link, element.likes, element.owner._id, element._id, userData._id, userId))
+// FUNCTIONS
+// Add card function
+function addFormSubmitHandler(data) {
+  addCardPopup.renderLoading(true);
+  api
+    .addCard(data)
+    .then((cardsData) => {
+      const cardElement = createCardClass(cardsData, selectors.cardsTemplateSelector);
+      cardList.addItem(cardElement);
+    })
+    .then(() => {
+      addCardPopup.closePopup();
+    })
+    .catch((err) => console.log(`Ошибка: ${err}`))
+    .finally(() => {
+      addCardPopup.renderLoading(false);
     });
+}
+
+// Edit profile function
+function profileFormSubmitHandler(data) {
+  editProfilePopup.renderLoading(true);
+  api
+    .patchProfile(data)
+    .then((res) => {
+      userInfo.setUserInfo(res);
+    })
+    .then(() => {
+      editProfilePopup.closePopup();
+    })
+    .catch((err) => console.log(`Ошибка: ${err}`))
+    .finally(() => {
+      editProfilePopup.renderLoading(false);
+    });
+}
+
+// Edit avatar function
+function changeAvatarHandler(data) {
+  editAvatarPopup.renderLoading(true);
+  api
+    .patchAvatar(data)
+    .then((res) => {
+      userInfo.setUserAvatar(res);
+    })
+    .then(() => {
+      editAvatarPopup.closePopup();
+    })
+    .catch((err) => console.log(`Ошибка: ${err}`))
+    .finally(() => {
+      editAvatarPopup.renderLoading(false);
+    });
+}
+
+// Create card function
+function createCardClass(data, cardsTemplate) {
+  const cardHandlers = {
+    userId,
+    handleLikeDelete() {
+      api
+        .deleteLike(element._id)
+        .then((data) => {
+          element.deleteLike(data);
+        })
+        .catch((err) => console.log(`Ошибка при удалении лайка: ${err}`));
+    },
+    handleCardDelete() {
+      api
+        .deleteCard(element._id)
+        .then(() => {
+          element.deleteCard();
+        })
+        .catch((err) => console.log(`Ошибка при удалении объекта: ${err}`));
+    },
+    handleLikeSet() {
+      api
+        .putLike(element._id)
+        .then((data) => {
+          element.setLike(data);
+        })
+        .catch((err) => console.log(`Ошибка при постановке лайка: ${err}`));
+    },
+    handleCardClick() {
+      imagePreviewPopup.openPopup(data);
+    }
+  }
+  const element = new Card(data, cardsTemplate, cardHandlers)
+  return element.createCard();
+}
+
+Promise.all([api.getProfile(), api.getCards()])
+  .then(([userData, cardsData]) => {
+    userInfo.setUserAvatar(userData);
+    userInfo.setUserInfo(userData);
+    userId = userData._id;
+    cardList.renderItems(cardsData.reverse());
   })
   .catch((err) => {
     profileTitleValue.textContent = 'Сервер болеть.'
