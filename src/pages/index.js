@@ -97,7 +97,7 @@ function addFormSubmitHandler(data) {
     .then(() => {
       addCardPopup.closePopup();
     })
-    .catch((err) => console.log(`Ошибка: ${err}`))
+    .catch((err) => console.log(`Error: ${err}`))
     .finally(() => {
       addCardPopup.renderLoading(false);
     });
@@ -114,7 +114,7 @@ function profileFormSubmitHandler(data) {
     .then(() => {
       editProfilePopup.closePopup();
     })
-    .catch((err) => console.log(`Ошибка: ${err}`))
+    .catch((err) => console.log(`Error: ${err}`))
     .finally(() => {
       editProfilePopup.renderLoading(false);
     });
@@ -131,7 +131,7 @@ function changeAvatarHandler(data) {
     .then(() => {
       editAvatarPopup.closePopup();
     })
-    .catch((err) => console.log(`Ошибка: ${err}`))
+    .catch((err) => console.log(`Error: ${err}`))
     .finally(() => {
       editAvatarPopup.renderLoading(false);
     });
@@ -147,7 +147,7 @@ function createCardClass(data, cardsTemplate) {
         .then((data) => {
           element.deleteLike(data);
         })
-        .catch((err) => console.log(`Ошибка при удалении лайка: ${err}`));
+        .catch((err) => console.log(`Like delete error: ${err}`));
     },
     handleCardDelete() {
       api
@@ -155,7 +155,7 @@ function createCardClass(data, cardsTemplate) {
         .then(() => {
           element.deleteCard();
         })
-        .catch((err) => console.log(`Ошибка при удалении объекта: ${err}`));
+        .catch((err) => console.log(`Card delete error: ${err}`));
     },
     handleLikeSet() {
       api
@@ -163,7 +163,7 @@ function createCardClass(data, cardsTemplate) {
         .then((data) => {
           element.setLike(data);
         })
-        .catch((err) => console.log(`Ошибка при постановке лайка: ${err}`));
+        .catch((err) => console.log(`Like add error: ${err}`));
     },
     handleCardClick() {
       imagePreviewPopup.openPopup(data);
@@ -181,7 +181,7 @@ Promise.all([api.getProfile(), api.getCards()])
     cardList.renderItems(cardsData.reverse());
   })
   .catch((err) => {
-    profileTitleValue.textContent = 'Сервер болеть.'
-    profileSubtitleValue.textContent = 'Заходите завтра.'
-    console.error('Ошибка при загрузке данных с сервера.', err);
+    profileTitleValue.textContent = 'Server error.'
+    profileSubtitleValue.textContent = 'Try again later.'
+    console.error('Error:', err);
   });
