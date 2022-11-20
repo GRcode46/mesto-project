@@ -3,7 +3,7 @@ import {
   deleteCard,
   putLike,
   deleteLike
-} from "./api";
+} from "./_api";
 
 
 import {

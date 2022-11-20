@@ -22,7 +22,7 @@ import {
 import {
   getProfile,
   getCards
-} from "./api";
+} from "./_api";
 
 import {
   closePopup,

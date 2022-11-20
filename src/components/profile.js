@@ -1,7 +1,7 @@
 import {
   patchProfile,
   patchAvatar
-} from "./api";
+} from "./_api";
 
 import {
   profileTitleValue,
