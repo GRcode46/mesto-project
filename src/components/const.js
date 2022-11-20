@@ -8,67 +8,65 @@ const headers = {
   authorization: token,
   'Content-Type': 'application/json'
 }
-const popupCloseButtons = document.querySelectorAll('.button__popup-close');
-const elementSubmitButton = document.querySelector('#edit-card-btn-submit');
 const profile = document.querySelector('.profile');
 const profileButtonEdit = profile.querySelector('.profile__btn-edit');
 const profileTitleValue = profile.querySelector('.profile__title');
 const profileSubtitleValue = profile.querySelector('.profile__subtitle');
-const profileAvatar = profile.querySelector('.profile__avatar')
-const profilePopup = document.querySelector('#popup-profile');
 const profilePopupForm = document.querySelector('#profile-popup-form');
 const profilePopupInputTitle = profilePopupForm.querySelector('#popup-profile-title');
 const profilePopupInputSubtitle = profilePopupForm.querySelector('#popup-profile-subtitle');
-const profileSubmitButton = document.querySelector('#edit-profile-btn-submit');
-const elementPopup = document.querySelector('#popup-element');
 const elementPopupForm = document.querySelector('#card-popup-form');
 const elementPopupButtonOpen = document.querySelector('.profile__btn-add');
-const elementName = document.querySelector('#element-name');
-const elementLink = document.querySelector('#element-url');
-const elementsList = document.querySelector('.elements__list');
-const elementTemplate = document.querySelector('#element-template').content;
-const previewPopup = document.querySelector('#popup-preview');
-const previewImage = previewPopup.querySelector('.popup-preview__image');
-const previewTitle = previewPopup.querySelector('.popup-preview__title');
-const deleteElementPopup = document.querySelector('#popup-card-delete-confirmation');
-const deletePopupBtnSubmit = deleteElementPopup.querySelector('#card-del-btn-submit');
 const profileAvatarBtnEdit = profile.querySelector('.profile__avatar-btn');
-const avatarPopup = document.querySelector('#popup-avatar');
-const avatarSubmitButton = document.querySelector('#edit-avatar-btn-submit');
-const avatarLink = document.querySelector('#avatar-url');
 const avatarPopupForm = document.querySelector('#avatar-popup-form');
+const cardsList = document.querySelector(".elements__list");
 
+export const selectors = {
+
+  profileTitleSelector: '.profile__title',
+  profileSubtitleSelector: '.profile__subtitle',
+  profileAvatarSelector: '.profile__avatar',
+
+  popupCloseButton: '.button__popup-close',
+  popupProfileSelector: '#popup-profile',
+  popupCardSelector: '#popup-element',
+  popupAvatarSelector: '#popup-avatar',
+  popupImagePreviewSelector: '#popup-preview',
+  //FormValidator selectors START
+  formSelector: '.popup__form',
+  inputSelector: '.form__input',
+  submitButtonSelector: '.popup__btn-submit',
+  inactiveButtonClass: 'button_state_inactive',
+  inputErrorClass: 'form__input_type_error',
+  errorClass: 'form__input-error_active',
+  //FormValidator selectors END
+
+  // Card template selectors START
+  cardsTemplateElementSelector: '.element',
+  cardsTemplateNameSelector: ".element__name",
+  cardsTemplateImageSelector: ".element__image",
+  cardsTemplateLikeButtonSelector: '.element__btn-like',
+  cardsTemplateLikeCounterSelector: '.element__like-counter',
+  cardsTemplateTrashSelector: '.element__trash',
+  cardsTemplateListSelector: '.elements__list',
+  cardsTemplateSelector: '#element-template',
+  // Card template selectors END
+
+};
 export {
   apiURL,
   headers,
-  popupCloseButtons,
   profile,
   profileButtonEdit,
   profileTitleValue,
   profileSubtitleValue,
-  profileAvatar,
-  profilePopup,
   profilePopupForm,
   profilePopupInputTitle,
   profilePopupInputSubtitle,
-  elementPopup,
   elementPopupForm,
   elementPopupButtonOpen,
-  elementName,
-  elementLink,
-  elementsList,
-  elementTemplate,
-  elementSubmitButton,
-  previewPopup,
-  previewImage,
-  previewTitle,
-  deleteElementPopup,
-  deletePopupBtnSubmit,
   profileAvatarBtnEdit,
-  avatarPopup,
-  avatarSubmitButton,
-  avatarLink,
   avatarPopupForm,
-  profileSubmitButton,
+  cardsList
 }
 
