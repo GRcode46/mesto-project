@@ -4,6 +4,10 @@ export default class Popup {
     popupOpened: "popup_opened",
   };
 
+  static selectors = {
+    popupCloseButton: '.button__popup-close'
+
+  }
 
   constructor(popupSelector) {
     this._popup = document.querySelector(popupSelector);
