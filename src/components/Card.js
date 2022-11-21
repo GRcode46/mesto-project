@@ -1,4 +1,5 @@
 // Create UserInfo class
+
 export default class Card {
   static selectors = {
     cardsTemplateElementSelector: '.element',
@@ -37,6 +38,7 @@ export default class Card {
   _getElement() {
     return document
       .querySelector(this._constructor)
+
       .content.querySelector(Card.selectors.cardsTemplateElementSelector)
       .cloneNode(true);
   }
@@ -102,6 +104,7 @@ export default class Card {
   _checkLikeUserSet() {
     this._likes.forEach((like) => {
       if (like._id === this._userId) {
+
         this._likeButton.classList.add("element__btn-like_active");
       }
     });

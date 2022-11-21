@@ -86,6 +86,7 @@ profileAvatarBtnEdit.addEventListener("click", () => {
 
 // FUNCTIONS
 // Add card function
+
 function addCardFormSubmitHandler(data) {
   return api
     .addCard(data)
@@ -131,6 +132,7 @@ function createCardClass(data, cardsTemplate) {
         .then(() => {
           element.deleteCard();
         })
+
         .catch((err) => console.log(`Card delete error: ${err}`));
     },
     handleLikeSet() {
