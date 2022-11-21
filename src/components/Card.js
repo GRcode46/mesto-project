@@ -1,7 +1,14 @@
 // Create UserInfo class
-import {selectors} from "../vendor/const";
-
 export default class Card {
+  static selectors = {
+    cardsTemplateElementSelector: '.element',
+    cardsTemplateImageSelector: '.element__image',
+    cardsTemplateNameSelector: '.element__name',
+    cardsTemplateTrashSelector: '.element__trash',
+    cardsTemplateLikeCounterSelector: '.element__like-counter',
+    cardsTemplateLikeButtonSelector: '.element__btn-like',
+  }
+
   constructor(
     data,
     templateSelector, {
@@ -30,19 +37,19 @@ export default class Card {
   _getElement() {
     return document
       .querySelector(this._constructor)
-      .content.querySelector(selectors.cardsTemplateElementSelector)
+      .content.querySelector(Card.selectors.cardsTemplateElementSelector)
       .cloneNode(true);
   }
 
   createCard() {
     this._element = this._getElement();
-    this._image = this._element.querySelector(selectors.cardsTemplateImageSelector);
-    this._element.querySelector(selectors.cardsTemplateNameSelector).textContent = this._name;
+    this._image = this._element.querySelector(Card.selectors.cardsTemplateImageSelector);
+    this._element.querySelector(Card.selectors.cardsTemplateNameSelector).textContent = this._name;
     this._image.src = this._link;
     this._image.alt = this._name;
-    this._likeCounter = this._element.querySelector(selectors.cardsTemplateLikeCounterSelector);
-    this._deleteButton = this._element.querySelector(selectors.cardsTemplateTrashSelector);
-    this._likeButton = this._element.querySelector(selectors.cardsTemplateLikeButtonSelector);
+    this._likeCounter = this._element.querySelector(Card.selectors.cardsTemplateLikeCounterSelector);
+    this._deleteButton = this._element.querySelector(Card.selectors.cardsTemplateTrashSelector);
+    this._likeButton = this._element.querySelector(Card.selectors.cardsTemplateLikeButtonSelector);
     this._getLikesCounter();
     this._checkId();
     this._checkLikeUserSet();
@@ -95,7 +102,7 @@ export default class Card {
   _checkLikeUserSet() {
     this._likes.forEach((like) => {
       if (like._id === this._userId) {
-        this._likeButton.classList.add("element__like_active");
+        this._likeButton.classList.add("element__btn-like_active");
       }
     });
   }
