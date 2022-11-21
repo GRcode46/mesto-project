@@ -1,10 +1,13 @@
-import {selectors} from "../vendor/const";
-
 export default class Popup {
   static classes = {
     popupClass: "popup",
     popupOpened: "popup_opened",
   };
+
+  static selectors = {
+    popupCloseButton: '.button__popup-close'
+
+  }
 
   constructor(popupSelector) {
     this._popup = document.querySelector(popupSelector);
@@ -38,7 +41,7 @@ export default class Popup {
 
   setEventListeners() {
     this._popup
-      .querySelector(selectors.popupCloseButton)
+      .querySelector(Popup.selectors.popupCloseButton)
       .addEventListener("click", () => this.closePopup());
   }
 }

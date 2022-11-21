@@ -22,16 +22,12 @@ const avatarPopupForm = document.querySelector('#avatar-popup-form');
 const cardsList = document.querySelector(".elements__list");
 
 export const selectors = {
-
-  profileTitleSelector: '.profile__title',
-  profileSubtitleSelector: '.profile__subtitle',
-  profileAvatarSelector: '.profile__avatar',
-
-  popupCloseButton: '.button__popup-close',
+  //Popup selectors START
   popupProfileSelector: '#popup-profile',
   popupCardSelector: '#popup-element',
   popupAvatarSelector: '#popup-avatar',
   popupImagePreviewSelector: '#popup-preview',
+  //Popup selectors END
   //FormValidator selectors START
   formSelector: '.popup__form',
   inputSelector: '.form__input',
@@ -42,12 +38,6 @@ export const selectors = {
   //FormValidator selectors END
 
   // Card template selectors START
-  cardsTemplateElementSelector: '.element',
-  cardsTemplateNameSelector: ".element__name",
-  cardsTemplateImageSelector: ".element__image",
-  cardsTemplateLikeButtonSelector: '.element__btn-like',
-  cardsTemplateLikeCounterSelector: '.element__like-counter',
-  cardsTemplateTrashSelector: '.element__trash',
   cardsTemplateListSelector: '.elements__list',
   cardsTemplateSelector: '#element-template',
   // Card template selectors END
