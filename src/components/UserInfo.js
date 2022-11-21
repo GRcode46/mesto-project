@@ -1,11 +1,15 @@
 // Create UserInfo class
-import {selectors} from "../vendor/const";
-
 export default class UserInfo {
+  static selectors = {
+    profileTitleSelector: '.profile__title',
+    profileSubtitleSelector: '.profile__subtitle',
+    profileAvatarSelector: '.profile__avatar'
+  }
+
   constructor() {
-    this._name = document.querySelector(selectors.profileTitleSelector);
-    this._about = document.querySelector(selectors.profileSubtitleSelector);
-    this._avatar = document.querySelector(selectors.profileAvatarSelector);
+    this._name = document.querySelector(UserInfo.selectors.profileTitleSelector);
+    this._about = document.querySelector(UserInfo.selectors.profileSubtitleSelector);
+    this._avatar = document.querySelector(UserInfo.selectors.profileAvatarSelector);
   }
 
   getUserInfo() {

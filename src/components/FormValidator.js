@@ -1,43 +1,24 @@
-// класс валидации формы
+// FormValidator class
 
 export default class FormValidator {
-  // принимает на вход селектор класса(конфиг) и элемент DOM
-  constructor(config, element) {
-    // переменные приватны, так как используются только внутри конструктора валидации
-    this._config = config;
-    this._element = element;
-    // определяем кнопки и инпуты формы
+  constructor(selector, form) {
+    this._selector = selector;
+    this._form = form;
     this._inputList = Array.from(
-      this._element.querySelectorAll(this._config.inputSelector)
+      this._form.querySelectorAll(this._selector.inputSelector)
     );
-
-    // значение inputSelector находится в объекте конфигураторе enableValidation
-    this._submitButton = this._element.querySelector(
-      this._config.submitButtonSelector
+    this._submitButton = this._form.querySelector(
+      this._selector.submitButtonSelector
     );
-    // значение submitButtonSelector находится в объекте конфигураторе enableValidation
   }
 
-  // Добавляем методы валидации
-  // =======================================================
-  // Слушатель событий на инпуты
-  _setEventListener() {
+  setInitialState() {
+    this._toggleButtonState();
     this._inputList.forEach((input) => {
-      input.addEventListener("input", () => {
-        // проверяем валидность
-        this._validationHandler(input);
-      });
-      this._toggleButtonState();
+      this._hideError(input);
     });
   }
 
-  //Валидность инпутов
-  _validationHandler(input) {
-    this._isValid(input);
-    this._toggleButtonState();
-  }
-
-  //Метод отрисовки ошибки в DOM
   _isValid(input) {
     if (!input.validity.valid) {
       this._showError(input, input.validationMessage);
@@ -46,51 +27,50 @@ export default class FormValidator {
     }
   }
 
-  //Метод показа ошибки
   _showError(input, errorMessage) {
-    const errorElement = this._element.querySelector(`.${input.id}-error`);
+    const errorElement = this._form.querySelector(`.${input.id}-error`);
     errorElement.textContent = errorMessage;
-    // errorClass и invalidInput берутся из enableValidation
-    errorElement.classList.add(this._config.errorClass);
-    input.classList.add(this._config.inputErrorClass);
+    errorElement.classList.add(this._selector.errorClass);
+    input.classList.add(this._selector.inputErrorClass);
   }
 
-  // Метод скрытия ошибки
   _hideError(input) {
-    const errorElement = this._element.querySelector(`.${input.id}-error`);
+    const errorElement = this._form.querySelector(`.${input.id}-error`);
     errorElement.textContent = "";
-    errorElement.classList.remove(this._config.errorClass);
-    input.classList.remove(this._config.inputErrorClass);
+    errorElement.classList.remove(this._selector.errorClass);
+    input.classList.remove(this._selector.inputErrorClass);
   }
 
-  // Проверка валидности полей
   _hasInvalidInput(inputList) {
     return inputList.some((input) => {
       return !input.validity.valid;
     });
   }
 
-  //Изменение состояния кнопки submit
   _toggleButtonState() {
     if (this._hasInvalidInput(this._inputList)) {
       this._submitButton.disabled = true;
-      //Значение inactiveButtonClass берется из enableValidation
-      this._submitButton.classList.add(this._config.inactiveButtonClass);
+      this._submitButton.classList.add(this._selector.inactiveButtonClass);
     } else {
       this._submitButton.disabled = false;
-      this._submitButton.classList.remove(this._config.inactiveButtonClass);
+      this._submitButton.classList.remove(this._selector.inactiveButtonClass);
     }
   }
 
-  //Удаление ошибки при новом открытии окна
-  setInitialState() {
+  _validationHandler(input) {
+    this._isValid(input);
     this._toggleButtonState();
+  }
+
+  _setEventListener() {
     this._inputList.forEach((input) => {
-      this._hideError(input);
+      input.addEventListener("input", () => {
+        this._validationHandler(input);
+      });
+      this._toggleButtonState();
     });
   }
 
-  //Включение валидации
   enableValidation() {
     this._setEventListener();
   }

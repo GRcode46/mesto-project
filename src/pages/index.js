@@ -49,9 +49,9 @@ const avatarFormValidator = new FormValidator(selectors, avatarPopupForm);
 const addFormValidator = new FormValidator(selectors, elementPopupForm);
 
 // Create Popup instances
-const editProfilePopup = new PopupWithForm(selectors.popupProfileSelector, profileFormSubmitHandler);
-const addCardPopup = new PopupWithForm(selectors.popupCardSelector, addFormSubmitHandler);
-const editAvatarPopup = new PopupWithForm(selectors.popupAvatarSelector, changeAvatarHandler);
+const editProfilePopup = new PopupWithForm(selectors.popupProfileSelector, changeProfileFormSubmitHandler);
+const addCardPopup = new PopupWithForm(selectors.popupCardSelector, addCardFormSubmitHandler);
+const editAvatarPopup = new PopupWithForm(selectors.popupAvatarSelector, changeAvatarFormSubmitHandler);
 const imagePreviewPopup = new PopupWithImage(selectors.popupImagePreviewSelector);
 
 // Enable validation for forms
@@ -86,55 +86,32 @@ profileAvatarBtnEdit.addEventListener("click", () => {
 
 // FUNCTIONS
 // Add card function
-function addFormSubmitHandler(data) {
-  addCardPopup.renderLoading(true);
-  api
+
+function addCardFormSubmitHandler(data) {
+  return api
     .addCard(data)
     .then((cardsData) => {
       const cardElement = createCardClass(cardsData, selectors.cardsTemplateSelector);
       cardList.addItem(cardElement);
     })
-    .then(() => {
-      addCardPopup.closePopup();
-    })
-    .catch((err) => console.log(`Ошибка: ${err}`))
-    .finally(() => {
-      addCardPopup.renderLoading(false);
-    });
 }
 
 // Edit profile function
-function profileFormSubmitHandler(data) {
-  editProfilePopup.renderLoading(true);
-  api
+function changeProfileFormSubmitHandler(data) {
+  return api
     .patchProfile(data)
     .then((res) => {
       userInfo.setUserInfo(res);
     })
-    .then(() => {
-      editProfilePopup.closePopup();
-    })
-    .catch((err) => console.log(`Ошибка: ${err}`))
-    .finally(() => {
-      editProfilePopup.renderLoading(false);
-    });
 }
 
 // Edit avatar function
-function changeAvatarHandler(data) {
-  editAvatarPopup.renderLoading(true);
-  api
+function changeAvatarFormSubmitHandler(data) {
+  return api
     .patchAvatar(data)
     .then((res) => {
       userInfo.setUserAvatar(res);
     })
-    .then(() => {
-      editAvatarPopup.closePopup();
-    })
-    .catch((err) => console.log(`Ошибка: ${err}`))
-    .finally(() => {
-      editAvatarPopup.renderLoading(false);
-    });
 }
 
 // Create card function
@@ -147,7 +124,7 @@ function createCardClass(data, cardsTemplate) {
         .then((data) => {
           element.deleteLike(data);
         })
-        .catch((err) => console.log(`Ошибка при удалении лайка: ${err}`));
+        .catch((err) => console.log(`Like delete error: ${err}`));
     },
     handleCardDelete() {
       api
@@ -155,7 +132,8 @@ function createCardClass(data, cardsTemplate) {
         .then(() => {
           element.deleteCard();
         })
-        .catch((err) => console.log(`Ошибка при удалении объекта: ${err}`));
+
+        .catch((err) => console.log(`Card delete error: ${err}`));
     },
     handleLikeSet() {
       api
@@ -163,7 +141,7 @@ function createCardClass(data, cardsTemplate) {
         .then((data) => {
           element.setLike(data);
         })
-        .catch((err) => console.log(`Ошибка при постановке лайка: ${err}`));
+        .catch((err) => console.log(`Like add error: ${err}`));
     },
     handleCardClick() {
       imagePreviewPopup.openPopup(data);
@@ -181,7 +159,7 @@ Promise.all([api.getProfile(), api.getCards()])
     cardList.renderItems(cardsData.reverse());
   })
   .catch((err) => {
-    profileTitleValue.textContent = 'Сервер болеть.'
-    profileSubtitleValue.textContent = 'Заходите завтра.'
-    console.error('Ошибка при загрузке данных с сервера.', err);
+    profileTitleValue.textContent = 'Server error.'
+    profileSubtitleValue.textContent = 'Try again later.'
+    console.error('Error:', err);
   });
